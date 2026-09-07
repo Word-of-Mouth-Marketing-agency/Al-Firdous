@@ -29,7 +29,8 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'primaryWhatsApp',
       type: 'text',
-      admin: { description: 'Optional primary WhatsApp number; leave empty until confirmed.' },
+      defaultValue: '01031080031',
+      admin: { description: 'Primary number used for the homepage WhatsApp action.' },
     },
     {
       name: 'socialLinks',

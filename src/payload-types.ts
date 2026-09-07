@@ -503,7 +503,7 @@ export interface SiteSetting {
       }[]
     | null;
   /**
-   * Optional primary WhatsApp number; leave empty until confirmed.
+   * Primary number used for the homepage WhatsApp action.
    */
   primaryWhatsApp?: string | null;
   socialLinks?: {
