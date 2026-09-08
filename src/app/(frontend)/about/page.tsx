@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowLeft, CheckCircle, Package, Truck } from '@phosphor-icons/react/dist/ssr'
 
 import { SiteFooter } from '@/components/site/SiteFooter'
+import { PageTitle } from '@/components/site/PageTitle'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { getHomepageData } from '@/lib/homepage-data'
 import { createPageMetadata } from '@/lib/seo'
@@ -23,13 +24,7 @@ export default async function AboutPage() {
     <>
       <SiteHeader settings={siteSettings} activePath="/about" />
       <main className="public-page">
-        <section className="inner-page-hero">
-          <div className="site-container">
-            <p className="page-kicker">الفردوس</p>
-            <h1>من نحن</h1>
-            <p>نوفر قطع الغيار التي تحتاجها لمعدات الخرسانة، مع تركيز واضح على الجودة وسرعة التوصيل.</p>
-          </div>
-        </section>
+        <PageTitle title="من نحن" />
         <section className="public-section about-page-intro">
           <div className="site-container about-page-intro__grid">
             <div className="about-page-intro__image"><Image src="/images/home/about-parts.webp" alt="قطع غيار لمعدات الخرسانة" fill sizes="(min-width: 900px) 50vw, 92vw" className="object-cover" /></div>

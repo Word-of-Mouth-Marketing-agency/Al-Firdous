@@ -2,6 +2,7 @@ import { getPayload } from 'payload'
 
 import config from '@payload-config'
 import type { Brand, Media, Product, ProductCategory, SiteSetting } from '@/payload-types'
+import { PRIMARY_WHATSAPP_PHONE, toWhatsAppUrl } from '@/lib/whatsapp'
 import {
   confirmedCategoryDefaults,
   confirmedPumpBrands,
@@ -82,8 +83,8 @@ const confirmedContacts: HomepageContact[] = [
 const fallbackSiteSettings: HomepageSiteSettings = {
   companyName: 'الفردوس',
   logo: null,
-  primaryPhone: confirmedContacts[0]?.phone ?? null,
-  whatsappUrl: toWhatsAppUrl(confirmedContacts[0]?.phone),
+  primaryPhone: PRIMARY_WHATSAPP_PHONE,
+  whatsappUrl: toWhatsAppUrl(PRIMARY_WHATSAPP_PHONE),
   contacts: confirmedContacts,
   socialLinks: {
     facebook: 'https://www.facebook.com/share/1CtRFEbbNJ/?mibextid=wwXIfr',
@@ -109,16 +110,6 @@ async function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T
 
 function isMedia(value: number | Media | null | undefined): value is Media {
   return typeof value === 'object' && value !== null && 'id' in value
-}
-
-export function toWhatsAppUrl(phone: string | null | undefined) {
-  if (!phone) return null
-
-  const digits = phone.replace(/\D/g, '')
-  if (!digits) return null
-
-  const internationalNumber = digits.startsWith('0') ? `20${digits.slice(1)}` : digits
-  return `https://wa.me/${internationalNumber}`
 }
 
 function mapCategory(category: ProductCategory, brandNames: string[]): HomepageCategory {
@@ -186,7 +177,7 @@ function mapProduct(product: Product): HomepageProduct {
 function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
   if (!settings) return fallbackSiteSettings
 
-  const primaryPhone = settings.primaryWhatsApp || settings.contacts?.[0]?.phone || null
+  const primaryPhone = settings.primaryWhatsApp || settings.contacts?.[0]?.phone || PRIMARY_WHATSAPP_PHONE
 
   return {
     companyName: settings.companyName || fallbackSiteSettings.companyName,
@@ -203,6 +194,20 @@ function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
       instagram: settings.socialLinks?.instagram || fallbackSiteSettings.socialLinks.instagram,
       tiktok: settings.socialLinks?.tiktok || fallbackSiteSettings.socialLinks.tiktok,
     },
+  }
+}
+
+export async function getSiteSettings(): Promise<HomepageSiteSettings> {
+  if (process.env.HOMEPAGE_PREVIEW_CONTENT === 'true') return fallbackSiteSettings
+
+  try {
+    const payload = await withTimeout(getPayload({ config }), 2500)
+    if (!payload) throw new Error('Payload connection timed out')
+
+    const settings = await withTimeout(payload.findGlobal({ slug: 'site-settings', depth: 1 }), 2500)
+    return mapSiteSettings(settings)
+  } catch {
+    return fallbackSiteSettings
   }
 }
 

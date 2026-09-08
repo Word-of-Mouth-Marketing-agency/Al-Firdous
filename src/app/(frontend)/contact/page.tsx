@@ -3,9 +3,11 @@ import { FacebookLogo, InstagramLogo, Phone, TiktokLogo, WhatsappLogo } from '@p
 
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { InquiryForm } from '@/components/contact/InquiryForm'
+import { PageTitle } from '@/components/site/PageTitle'
 import { SiteHeader } from '@/components/site/SiteHeader'
-import { getHomepageData, toWhatsAppUrl } from '@/lib/homepage-data'
+import { getHomepageData } from '@/lib/homepage-data'
 import { createPageMetadata } from '@/lib/seo'
+import { toWhatsAppUrl } from '@/lib/whatsapp'
 
 export const metadata: Metadata = createPageMetadata({
   title: 'تواصل معنا',
@@ -27,9 +29,7 @@ export default async function ContactPage() {
     <>
       <SiteHeader settings={siteSettings} activePath="/contact" />
       <main className="public-page">
-        <section className="inner-page-hero inner-page-hero--compact">
-          <div className="site-container"><p className="page-kicker">نحن هنا لمساعدتك</p><h1>تواصل معنا</h1><p>أرسل لنا اسم القطعة أو صورة لها، وسنساعدك في الوصول إلى الاستفسار المناسب.</p></div>
-        </section>
+        <PageTitle title="تواصل معنا" />
         <section className="public-section contact-page-section">
           <div className="site-container contact-page-grid">
             <div className="contact-page-lead">

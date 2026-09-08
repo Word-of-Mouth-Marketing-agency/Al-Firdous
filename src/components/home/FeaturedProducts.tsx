@@ -9,20 +9,24 @@ type FeaturedProductsProps = {
 }
 
 function ProductCard({ product }: { product: HomepageProduct }) {
+  const productHref = `/products/${product.slug}`
+
   return (
     <article className="product-card">
-      <MediaFrame
-        media={product.image}
-        fallbackSrc={product.fallbackImageSrc || undefined}
-        alt={product.name}
-        label={`صورة ${product.name} ستضاف من لوحة التحكم`}
-        className="product-card__media"
-        sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-      />
+      <Link href={productHref} className="product-card__media-link" aria-label={`عرض ${product.name}`}>
+        <MediaFrame
+          media={product.image}
+          fallbackSrc={product.fallbackImageSrc || undefined}
+          alt={product.name}
+          label={`صورة ${product.name} ستضاف من لوحة التحكم`}
+          className="product-card__media"
+          sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
+        />
+      </Link>
       <div className="product-card__body">
-        <h3>{product.name}</h3>
+        <h3><Link href={productHref}>{product.name}</Link></h3>
         {product.partNumber ? <p>{product.partNumber}</p> : null}
-        <Link href={`/contact?product=${product.slug}`} className="product-card__action">
+        <Link href={productHref} className="product-card__action">
           استفسر الآن
           <WhatsappLogo aria-hidden="true" weight="bold" />
         </Link>

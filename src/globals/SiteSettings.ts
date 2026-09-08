@@ -1,5 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
+import { PRIMARY_WHATSAPP_PHONE } from '../lib/whatsapp'
+
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'إعدادات الموقع',
@@ -29,7 +31,7 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'primaryWhatsApp',
       type: 'text',
-      defaultValue: '01031080031',
+      defaultValue: PRIMARY_WHATSAPP_PHONE,
       admin: { description: 'Primary number used for the homepage WhatsApp action.' },
     },
     {

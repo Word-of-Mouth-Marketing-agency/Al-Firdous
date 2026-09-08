@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Noto_Sans_Arabic } from 'next/font/google'
 import React from 'react'
 
+import { FloatingWhatsApp } from '@/components/site/FloatingWhatsApp'
+import { getSiteSettings } from '@/lib/homepage-data'
 import { createPageMetadata } from '@/lib/seo'
 
 import './styles.css'
@@ -18,11 +20,14 @@ export const metadata: Metadata = createPageMetadata({
   path: '/',
 })
 
-export default function FrontendLayout(props: { children: React.ReactNode }) {
+export default async function FrontendLayout(props: { children: React.ReactNode }) {
+  const siteSettings = await getSiteSettings()
+
   return (
     <html lang="ar" dir="rtl">
       <body className={`${arabicFont.variable} bg-surface text-foreground antialiased`}>
         {props.children}
+        <FloatingWhatsApp whatsappUrl={siteSettings.whatsappUrl} />
       </body>
     </html>
   )

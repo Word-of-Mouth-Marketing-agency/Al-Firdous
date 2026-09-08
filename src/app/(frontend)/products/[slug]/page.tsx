@@ -6,11 +6,13 @@ import { notFound } from 'next/navigation'
 import { Breadcrumbs } from '@/components/catalog/Breadcrumbs'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { ProductGallery } from '@/components/catalog/ProductGallery'
+import { PageTitle } from '@/components/site/PageTitle'
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { getCatalogData, getCatalogProductBySlug } from '@/lib/catalog-data'
 import { getHomepageData } from '@/lib/homepage-data'
 import { createProductMetadata } from '@/lib/seo'
+import { withWhatsAppMessage } from '@/lib/whatsapp'
 
 export const dynamic = 'force-dynamic'
 
@@ -37,14 +39,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     product.image?.url || product.fallbackImageSrc,
     ...product.gallery.map((media) => media.url).filter((src): src is string => Boolean(src)),
   ].filter((src): src is string => Boolean(src)).map((src) => ({ src, alt: product.name }))
-  const inquiryText = encodeURIComponent(`مرحباً، أريد الاستفسار عن: ${product.name}`)
-  const whatsappUrl = siteSettings.whatsappUrl ? `${siteSettings.whatsappUrl}?text=${inquiryText}` : null
+  const inquiryMessage = product.partNumber
+    ? `مرحباً، أريد الاستفسار عن المنتج:\n${product.name}\nرقم القطعة: ${product.partNumber}`
+    : `مرحباً، أريد الاستفسار عن المنتج:\n${product.name}`
+  const whatsappUrl = withWhatsAppMessage(siteSettings.whatsappUrl, inquiryMessage)
   const relatedProducts = related.products.filter((item) => item.slug !== product.slug).slice(0, 4)
 
   return (
     <>
       <SiteHeader settings={siteSettings} activePath="/products" />
       <main className="public-page">
+        <PageTitle title={product.name} />
         <section className="product-detail-page public-section">
           <div className="site-container">
             <Breadcrumbs items={[{ label: 'الرئيسية', href: '/' }, { label: 'المنتجات', href: '/products' }, { label: product.name }]} />
@@ -52,7 +57,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <ProductGallery images={images} />
               <article className="product-detail-copy">
                 <p className="page-kicker">{product.category.title}</p>
-                <h1>{product.name}</h1>
                 {product.brand ? <p className="product-detail-brand">العلامة المدعومة: <strong>{product.brand.name}</strong></p> : null}
                 <p className="product-detail-description">{product.shortDescription || 'قطعة من مجموعة قطع غيار معدات الخرسانة المتاحة للاستفسار.'}</p>
                 <p className="product-detail-note">للتأكد من ملاءمة القطعة، أرسل صورة القطعة أو بيانات المعدة لفريق الفردوس قبل الاستفسار.</p>

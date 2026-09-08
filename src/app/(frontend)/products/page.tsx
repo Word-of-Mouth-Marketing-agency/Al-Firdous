@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { CatalogFilters } from '@/components/catalog/CatalogFilters'
 import { CatalogProductCard } from '@/components/catalog/CatalogProductCard'
 import { SiteFooter } from '@/components/site/SiteFooter'
+import { PageTitle } from '@/components/site/PageTitle'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { getCatalogData } from '@/lib/catalog-data'
 import { getHomepageData } from '@/lib/homepage-data'
@@ -38,13 +39,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Sea
     <>
       <SiteHeader settings={siteSettings} activePath="/products" />
       <main className="public-page">
-        <section className="inner-page-hero inner-page-hero--compact">
-          <div className="site-container">
-            <p className="page-kicker">كتالوج الفردوس</p>
-            <h1>المنتجات</h1>
-            <p>استعرض قطع الغيار المتاحة، ثم أرسل استفسارك عن القطعة المناسبة.</p>
-          </div>
-        </section>
+        <PageTitle title="المنتجات" />
         <section className="public-section public-section--muted products-page-section">
           <div className="site-container">
             <CatalogFilters query={catalog.query} category={catalog.category} brand={catalog.brand} categories={catalog.categories} brands={catalog.brands} />
