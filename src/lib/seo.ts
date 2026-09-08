@@ -18,10 +18,12 @@ export function createPageMetadata({
   title,
   description = defaultDescription,
   path,
+  image,
 }: {
   title: string
   description?: string
   path: string
+  image?: string | null
 }): Metadata {
   const fullTitle = title === companyName ? title : `${title} | ${companyName}`
   const url = new URL(path, getSiteUrl())
@@ -38,6 +40,7 @@ export function createPageMetadata({
       siteName: companyName,
       locale: 'ar_EG',
       type: 'website',
+      images: image ? [new URL(image, getSiteUrl())] : undefined,
     },
   }
 }
@@ -46,15 +49,18 @@ export function createProductMetadata({
   name,
   description,
   slug,
+  image,
 }: {
   name: string
   description?: string | null
   slug: string
+  image?: string | null
 }): Metadata {
   return createPageMetadata({
     title: name,
     description: description || defaultDescription,
     path: `/products/${slug}`,
+    image,
   })
 }
 

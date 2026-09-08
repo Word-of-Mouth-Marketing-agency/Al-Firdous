@@ -2,6 +2,11 @@ import { getPayload } from 'payload'
 
 import config from '@payload-config'
 import type { Brand, Media, Product, ProductCategory, SiteSetting } from '@/payload-types'
+import {
+  confirmedCategoryDefaults,
+  confirmedPumpBrands,
+  fallbackCatalogProducts,
+} from '@/lib/product-catalog'
 
 export type HomepageCategory = {
   id: number | string
@@ -22,11 +27,18 @@ export type HomepageProduct = {
   fallbackImageSrc: string | null
 }
 
+export type HomepageContact = {
+  name: string
+  role: string
+  phone: string
+}
+
 export type HomepageSiteSettings = {
   companyName: string
   logo: Media | null
   primaryPhone: string | null
   whatsappUrl: string | null
+  contacts: HomepageContact[]
   socialLinks: NonNullable<SiteSetting['socialLinks']>
 }
 
@@ -36,15 +48,6 @@ export type HomepageData = {
   siteSettings: HomepageSiteSettings
   contentSource: 'cms' | 'fallback'
 }
-
-const confirmedCategoryDefaults = [
-  { title: 'قطع غيار مضخات الخرسانة', slug: 'concrete-pump-parts' },
-  { title: 'قطع غيار خلاطات الخرسانة', slug: 'concrete-mixer-parts' },
-  { title: 'قطع غيار محطات الخرسانة', slug: 'concrete-plant-parts' },
-  { title: 'قطع غيار عامة', slug: 'general-parts' },
-] as const
-
-const confirmedPumpBrands = ['Zoomlion', 'Schwing', 'Putzmeister'] as const
 
 const categoryPreviewContent: Record<
   (typeof confirmedCategoryDefaults)[number]['slug'],
@@ -68,58 +71,7 @@ const categoryPreviewContent: Record<
   },
 }
 
-const confirmedProductPreviews: HomepageProduct[] = [
-  {
-    id: 'preview-ring-250',
-    name: 'حلقة 250',
-    slug: 'ring-250',
-    partNumber: null,
-    image: null,
-    fallbackImageSrc: '/images/products/ring-250.webp',
-  },
-  {
-    id: 'preview-ring-210',
-    name: 'حلقة 210',
-    slug: 'ring-210',
-    partNumber: null,
-    image: null,
-    fallbackImageSrc: '/images/products/ring-210.webp',
-  },
-  {
-    id: 'preview-ring-220',
-    name: 'حلقة 220',
-    slug: 'ring-220',
-    partNumber: null,
-    image: null,
-    fallbackImageSrc: '/images/products/ring-220.webp',
-  },
-  {
-    id: 'preview-ring-230',
-    name: 'حلقة 230',
-    slug: 'ring-230',
-    partNumber: null,
-    image: null,
-    fallbackImageSrc: '/images/products/ring-230.webp',
-  },
-  {
-    id: 'preview-ram-230',
-    name: 'رامة 230',
-    slug: 'ram-230',
-    partNumber: null,
-    image: null,
-    fallbackImageSrc: '/images/products/ram-230.webp',
-  },
-  {
-    id: 'preview-ram-250',
-    name: 'رامة 250',
-    slug: 'ram-250',
-    partNumber: null,
-    image: null,
-    fallbackImageSrc: '/images/products/ram-250.webp',
-  },
-]
-
-const confirmedContacts = [
+const confirmedContacts: HomepageContact[] = [
   { name: 'عبدالرحمن', role: 'مبيعات', phone: '01031080031' },
   { name: 'منار', role: 'خدمة عملاء', phone: '01102100224' },
   { name: 'أحمد', role: 'مدير الحسابات', phone: '01031080048' },
@@ -132,6 +84,7 @@ const fallbackSiteSettings: HomepageSiteSettings = {
   logo: null,
   primaryPhone: confirmedContacts[0]?.phone ?? null,
   whatsappUrl: toWhatsAppUrl(confirmedContacts[0]?.phone),
+  contacts: confirmedContacts,
   socialLinks: {
     facebook: 'https://www.facebook.com/share/1CtRFEbbNJ/?mibextid=wwXIfr',
     instagram: 'https://www.instagram.com/alfir_dous17?igsh=MXNxeTNrZmozNHI5bA=',
@@ -158,7 +111,7 @@ function isMedia(value: number | Media | null | undefined): value is Media {
   return typeof value === 'object' && value !== null && 'id' in value
 }
 
-function toWhatsAppUrl(phone: string | null | undefined) {
+export function toWhatsAppUrl(phone: string | null | undefined) {
   if (!phone) return null
 
   const digits = phone.replace(/\D/g, '')
@@ -240,6 +193,11 @@ function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
     logo: isMedia(settings.logo) ? settings.logo : null,
     primaryPhone,
     whatsappUrl: toWhatsAppUrl(primaryPhone),
+    contacts: settings.contacts?.map((contact) => ({
+      name: contact.name,
+      role: contact.role,
+      phone: contact.phone,
+    })) || fallbackSiteSettings.contacts,
     socialLinks: {
       facebook: settings.socialLinks?.facebook || fallbackSiteSettings.socialLinks.facebook,
       instagram: settings.socialLinks?.instagram || fallbackSiteSettings.socialLinks.instagram,
@@ -251,7 +209,14 @@ function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
 function buildFallbackHomepageData(): HomepageData {
   return {
     categories: buildFallbackCategories(),
-    featuredProducts: confirmedProductPreviews,
+    featuredProducts: fallbackCatalogProducts.slice(0, 6).map((product) => ({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      partNumber: null,
+      image: null,
+      fallbackImageSrc: product.image,
+    })),
     siteSettings: fallbackSiteSettings,
     contentSource: 'fallback',
   }
@@ -311,7 +276,16 @@ export async function getHomepageData(): Promise<HomepageData> {
         categoryResult.docs as ProductCategory[],
         brandNames.length ? brandNames : [...confirmedPumpBrands],
       ),
-      featuredProducts: cmsProducts.length ? cmsProducts.map(mapProduct) : confirmedProductPreviews,
+      featuredProducts: cmsProducts.length
+        ? cmsProducts.map(mapProduct)
+        : fallbackCatalogProducts.slice(0, 6).map((product) => ({
+            id: product.id,
+            name: product.name,
+            slug: product.slug,
+            partNumber: null,
+            image: null,
+            fallbackImageSrc: product.image,
+          })),
       siteSettings: mapSiteSettings(siteSettings as SiteSetting),
       contentSource: 'cms',
     }

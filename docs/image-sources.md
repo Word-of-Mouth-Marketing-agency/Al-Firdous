@@ -8,7 +8,7 @@ This record covers production assets used by the Al Firdous homepage. Brand mark
 | ------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------- |
 | `public/images/brand/al-firdous-logo.webp`       | Header                                   | Client-supplied `logo.png`                             | Official Al Firdous logo, losslessly resized for the web.                              |
 | `public/images/brand/al-firdous-logo-white.webp` | Footer                                   | Client-supplied `footer-logo.png`                      | Official white Al Firdous logo, losslessly resized for the web.                        |
-| `public/images/products/*.webp`                  | Featured products                        | Client-supplied product photography in `firdous-media` | Resized and compressed locally; product names retain the supplied catalog terminology. |
+| `public/images/products/catalog/*.webp`         | Catalog and featured products            | Client-supplied product photography in `firdous-media` | 50 unique visual assets resized and compressed locally; exact duplicate source aliases are documented in `docs/product-media-inventory.md`. |
 | `public/images/home/about-parts.webp`            | About preview and general-parts category | Composite of client-supplied product photography       | Four supplied product photos arranged on a neutral background.                         |
 
 ## Generated visual

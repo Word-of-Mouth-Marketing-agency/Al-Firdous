@@ -1,8 +1,6 @@
 # Al Firdous / الفردوس
 
-Foundation for an Arabic-first product catalog and inquiry website for Al Firdous, a company that supplies spare parts for concrete pumps, mixers, and batching plants.
-
-This pass intentionally contains technical foundation and minimal route shells only. The homepage and final public interface are waiting for the approved design reference.
+Arabic-first product catalog and inquiry website for Al Firdous, a company that supplies spare parts for concrete pumps, mixers, and batching plants.
 
 ## Stack
 
@@ -37,9 +35,18 @@ npm run build
 npm run start
 npm run generate:types
 npm run generate:importmap
+npm run import:catalog
 ```
 
-`npm run test:e2e` starts the local development server through Playwright. It validates the four public route shells and their Arabic RTL root attributes. It does not seed production data.
+`npm run test:e2e` starts the local preview server through Playwright. It validates the public homepage, route navigation, catalog search/filter behavior, product detail inquiry flow, contact information, Arabic RTL attributes, and mobile menu behavior.
+
+The supplied product media is processed deterministically with:
+
+```text
+npm run prepare:catalog -- A:/Downloads/firdous-media
+```
+
+This writes optimized WebP files to `public/images/products/catalog`, a committed manifest at `src/data/product-catalog.json`, and the audit table at `docs/product-media-inventory.md`. Once a valid local PostgreSQL database and authenticated Payload environment are available, `npm run import:catalog` creates/updates the four approved categories, the three supported-brand records, media records, and idempotent product records.
 
 ## Environment variables
 
@@ -81,7 +88,7 @@ There is intentionally no price, cart, checkout, payment, or public ecommerce fl
 
 ## Routes and SEO
 
-Public route shells exist at `/`, `/about`, `/products`, and `/contact`. They are intentionally minimal and contain no homepage design or fabricated marketing sections.
+Public routes are available at `/`, `/about`, `/products`, `/products/[slug]`, and `/contact`. The products page supports server-rendered `q`, `category`, `brand`, and `page` query parameters. Product records remain inquiry-only: there is no price, cart, checkout, or payment flow.
 
 The foundation also includes:
 
@@ -103,6 +110,8 @@ The foundation also includes:
 - Local media is development-only; use an approved external/object-storage adapter before a large production media library is introduced.
 - The application is designed as one lightweight Next.js/Payload runtime without Redis, worker processes, or microservices.
 
-## Design boundary
+## Content and fallback boundary
 
-The homepage, final header/footer, visual system, product cards, marketing sections, animations, and final About/Products/Contact experiences are intentionally pending the approved design reference. Do not expand the route shells into a visual homepage until that handoff arrives.
+Payload remains the production content source. When the local database is unavailable or does not yet contain catalog products, the public frontend falls back to the committed, client-supplied media manifest so the site remains reviewable without inventing prices, technical specifications, compatibility, certifications, addresses, or partnership claims. The fallback never replaces the Payload architecture.
+
+The 57 supplied media files contain 50 unique visual assets after seven exact duplicate pairs are merged. All are mapped to the concrete-pump-parts category; only filenames that explicitly include `شيفينج` receive the `Schwing` brand filter, avoiding an unsupported manufacturer claim for other names.
