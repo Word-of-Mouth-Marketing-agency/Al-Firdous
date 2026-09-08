@@ -1,10 +1,17 @@
 import Link from 'next/link'
+import { Phone } from '@phosphor-icons/react/dist/ssr'
 
 import { BrandLogo } from '@/components/site/BrandLogo'
+import type { HomepageSiteSettings } from '@/lib/homepage-data'
 import { mainNavigation } from '@/lib/site-navigation'
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  settings: HomepageSiteSettings
+}
+
+export function SiteHeader({ settings }: SiteHeaderProps) {
   const isActive = (href: string) => href === '/'
+  const phoneHref = settings.primaryPhone ? `tel:${settings.primaryPhone}` : '/contact'
 
   return (
     <header className="site-header">
@@ -25,6 +32,11 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
+
+        <a href={phoneHref} className="site-header__cta button button--primary">
+          <Phone aria-hidden="true" weight="bold" />
+          اتصل بنا
+        </a>
 
         <details className="site-header__mobile-menu">
           <summary className="site-header__menu-button" aria-label="القائمة">
@@ -52,6 +64,10 @@ export function SiteHeader() {
                   {item.label}
                 </Link>
               ))}
+              <a href={phoneHref} className="site-header__mobile-cta button button--primary">
+                <Phone aria-hidden="true" weight="bold" />
+                اتصل بنا
+              </a>
             </div>
           </nav>
         </details>

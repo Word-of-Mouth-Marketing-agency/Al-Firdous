@@ -34,10 +34,6 @@ export function Hero() {
             </Link>
           </div>
         </div>
-        <p className="hero-section__note" aria-hidden="true">
-          شريكك
-          <span>في استمرارية العمل</span>
-        </p>
       </div>
     </section>
   )

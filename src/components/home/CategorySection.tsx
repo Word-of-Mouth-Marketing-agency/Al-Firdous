@@ -53,23 +53,23 @@ export function CategorySection({ categories }: CategorySectionProps) {
                       <Image
                         src="/images/brands/zoomlion.svg"
                         alt="Zoomlion"
-                        width={108}
+                        width={92}
                         height={24}
-                        style={{ width: 'auto', height: 'auto' }}
+                        style={{ width: '92px', height: '24px', objectFit: 'contain' }}
                       />
                       <Image
                         src="/images/brands/schwing.svg"
                         alt="Schwing"
                         width={88}
                         height={24}
-                        style={{ width: 'auto', height: 'auto' }}
+                        style={{ width: '88px', height: '24px', objectFit: 'contain' }}
                       />
                       <Image
                         src="/images/brands/putzmeister-optimized.png"
                         alt="Putzmeister"
-                        width={64}
-                        height={30}
-                        style={{ width: 'auto', height: 'auto' }}
+                        width={56}
+                        height={28}
+                        style={{ width: '56px', height: '28px', objectFit: 'contain' }}
                       />
                     </div>
                   ) : null}
