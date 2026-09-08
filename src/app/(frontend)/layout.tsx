@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_Arabic } from 'next/font/google'
+import { Tajawal } from 'next/font/google'
 import React from 'react'
 
 import { FloatingWhatsApp } from '@/components/site/FloatingWhatsApp'
@@ -8,8 +8,9 @@ import { createPageMetadata } from '@/lib/seo'
 
 import './styles.css'
 
-const arabicFont = Noto_Sans_Arabic({
-  subsets: ['arabic'],
+const arabicFont = Tajawal({
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '500', '700', '800', '900'],
   variable: '--font-arabic',
   display: 'swap',
 })

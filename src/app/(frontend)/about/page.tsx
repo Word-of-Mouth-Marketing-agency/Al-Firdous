@@ -39,7 +39,7 @@ export default async function AboutPage() {
         </section>
         <section className="public-section public-section--muted">
           <div className="site-container">
-            <div className="section-heading section-heading--centered"><p className="page-kicker">مجالات القطع</p><h2>الأقسام التي نخدمها</h2></div>
+            <div className="section-heading section-heading--centered"><p className="page-kicker">مجالات القطع</p><h2>مجالات تخصصنا</h2></div>
             <div className="about-scope-grid">
               <div><Package aria-hidden="true" /><h3>مضخات الخرسانة</h3><p>قطع غيار متاحة ضمن الكتالوج الحالي.</p></div>
               <div><Truck aria-hidden="true" /><h3>خلاطات الخرسانة</h3><p>قسم مخصص للوصول إلى احتياجات الخلاطات.</p></div>
