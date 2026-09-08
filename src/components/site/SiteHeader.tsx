@@ -39,7 +39,11 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
         </a>
 
         <details className="site-header__mobile-menu">
-          <summary className="site-header__menu-button" aria-label="القائمة">
+          <summary
+            className="site-header__menu-button"
+            aria-label="القائمة"
+            aria-controls="mobile-navigation"
+          >
             <span className="visually-hidden">القائمة</span>
             <span className="menu-icon" aria-hidden="true">
               <span />
