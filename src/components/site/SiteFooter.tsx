@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { FacebookLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr'
 
 import { BrandLogo } from '@/components/site/BrandLogo'
 import { mainNavigation } from '@/lib/site-navigation'
@@ -10,17 +11,16 @@ type SiteFooterProps = {
 
 export function SiteFooter({ settings }: SiteFooterProps) {
   const socialLinks = [
-    { label: 'Facebook', href: settings.socialLinks.facebook },
-    { label: 'Instagram', href: settings.socialLinks.instagram },
-    { label: 'TikTok', href: settings.socialLinks.tiktok },
+    { label: 'Facebook', href: settings.socialLinks.facebook, icon: FacebookLogo },
+    { label: 'Instagram', href: settings.socialLinks.instagram, icon: InstagramLogo },
+    { label: 'TikTok', href: settings.socialLinks.tiktok, icon: TiktokLogo },
   ].filter((social) => social.href)
 
   return (
     <footer className="site-footer">
       <div className="site-container site-footer__grid">
         <div className="site-footer__brand">
-          <BrandLogo logo={settings.logo} inverted />
-          <p>جميع الحقوق محفوظة © الفردوس</p>
+          <BrandLogo inverted />
         </div>
 
         <div className="site-footer__links">
@@ -37,12 +37,22 @@ export function SiteFooter({ settings }: SiteFooterProps) {
         <div className="site-footer__socials">
           <h2>تابعونا على</h2>
           <div className="site-footer__social-list">
-            {socialLinks.map((social) => (
-              <a key={social.label} href={social.href || undefined} target="_blank" rel="noreferrer">
-                {social.label}
-              </a>
-            ))}
+            {socialLinks.map((social) => {
+              const Icon = social.icon
+              return (
+                <a
+                  key={social.label}
+                  href={social.href || undefined}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}
+                >
+                  <Icon aria-hidden="true" weight="fill" />
+                </a>
+              )
+            })}
           </div>
+          <p>جميع الحقوق محفوظة © الفردوس 2026</p>
         </div>
       </div>
     </footer>

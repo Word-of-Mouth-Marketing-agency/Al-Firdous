@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowLeft, Gear, Medal, Truck } from '@phosphor-icons/react/dist/ssr'
 
 import { MediaFrame } from '@/components/site/MediaFrame'
 import type { Media } from '@/payload-types'
@@ -13,6 +14,7 @@ export function AboutPreview({ media }: AboutPreviewProps) {
       <div className="site-container about-preview__grid">
         <MediaFrame
           media={media}
+          fallbackSrc="/images/home/about-parts.webp"
           alt="قطع غيار معدات الخرسانة"
           label="صورة تعريفية ستضاف من لوحة التحكم"
           className="about-preview__media"
@@ -25,10 +27,27 @@ export function AboutPreview({ media }: AboutPreviewProps) {
             شركة الفردوس متخصصة في توفير قطع غيار المضخات وخلاطات ومحطات الخرسانة مع الجودة وسرعة
             التوصيل.
           </p>
-          <Link href="/about" className="button button--secondary">
+          <Link href="/about" className="about-preview__link">
             اعرف المزيد
-            <span aria-hidden="true">←</span>
+            <ArrowLeft aria-hidden="true" weight="bold" />
           </Link>
+          <div className="about-preview__features" aria-label="مميزات الفردوس">
+            <div>
+              <Gear aria-hidden="true" weight="regular" />
+              <strong>توفير متخصص</strong>
+              <span>لقطع غيار معدات الخرسانة</span>
+            </div>
+            <div>
+              <Medal aria-hidden="true" weight="regular" />
+              <strong>جودة عالية</strong>
+              <span>في اختيار قطع الغيار</span>
+            </div>
+            <div>
+              <Truck aria-hidden="true" weight="regular" />
+              <strong>توصيل سريع</strong>
+              <span>للوصول إلى احتياجاتك</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

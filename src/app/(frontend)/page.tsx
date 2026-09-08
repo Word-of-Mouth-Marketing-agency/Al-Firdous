@@ -23,7 +23,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <SiteHeader logo={siteSettings.logo} />
+      <SiteHeader />
       <main>
         <Hero />
         <CategorySection categories={categories} />

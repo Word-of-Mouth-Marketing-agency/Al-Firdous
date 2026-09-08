@@ -2,20 +2,15 @@ import Link from 'next/link'
 
 import { BrandLogo } from '@/components/site/BrandLogo'
 import { mainNavigation } from '@/lib/site-navigation'
-import type { Media } from '@/payload-types'
 
-type SiteHeaderProps = {
-  logo?: Media | null
-}
-
-export function SiteHeader({ logo }: SiteHeaderProps) {
+export function SiteHeader() {
   const isActive = (href: string) => href === '/'
 
   return (
     <header className="site-header">
       <div className="site-container site-header__inner">
         <Link href="/" className="site-header__brand">
-          <BrandLogo logo={logo} />
+          <BrandLogo />
         </Link>
 
         <nav className="site-header__desktop-nav" aria-label="التنقل الرئيسي">
@@ -32,8 +27,8 @@ export function SiteHeader({ logo }: SiteHeaderProps) {
         </nav>
 
         <details className="site-header__mobile-menu">
-          <summary className="site-header__menu-button">
-            <span>القائمة</span>
+          <summary className="site-header__menu-button" aria-label="القائمة">
+            <span className="visually-hidden">القائمة</span>
             <span className="menu-icon" aria-hidden="true">
               <span />
               <span />
@@ -41,7 +36,11 @@ export function SiteHeader({ logo }: SiteHeaderProps) {
             </span>
           </summary>
 
-          <nav id="mobile-navigation" className="site-header__mobile-nav" aria-label="التنقل الرئيسي">
+          <nav
+            id="mobile-navigation"
+            className="site-header__mobile-nav"
+            aria-label="التنقل الرئيسي"
+          >
             <div className="site-container site-header__mobile-nav-inner">
               {mainNavigation.map((item) => (
                 <Link

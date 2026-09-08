@@ -4,31 +4,35 @@ import type { Media } from '@/payload-types'
 
 type MediaFrameProps = {
   media?: Media | null
+  fallbackSrc?: string
   alt: string
   label: string
   className?: string
-  priority?: boolean
   sizes?: string
+  objectPosition?: string
 }
 
 export function MediaFrame({
   media,
+  fallbackSrc,
   alt,
   label,
   className = '',
-  priority = false,
   sizes = '100vw',
+  objectPosition,
 }: MediaFrameProps) {
-  if (media?.url) {
+  const src = media?.url || fallbackSrc
+
+  if (src) {
     return (
       <div className={`media-frame ${className}`}>
         <Image
-          src={media.url}
+          src={src}
           alt={alt}
           fill
-          priority={priority}
           sizes={sizes}
           className="object-cover"
+          style={objectPosition ? { objectPosition } : undefined}
         />
       </div>
     )

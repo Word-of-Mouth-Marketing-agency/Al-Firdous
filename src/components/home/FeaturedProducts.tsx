@@ -1,19 +1,19 @@
 import Link from 'next/link'
+import { WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
 
 import { MediaFrame } from '@/components/site/MediaFrame'
-import type { Product } from '@/payload-types'
+import type { HomepageProduct } from '@/lib/homepage-data'
 
 type FeaturedProductsProps = {
-  products: Product[]
+  products: HomepageProduct[]
 }
 
-function ProductCard({ product }: { product: Product }) {
-  const image = typeof product.mainImage === 'object' && product.mainImage ? product.mainImage : null
-
+function ProductCard({ product }: { product: HomepageProduct }) {
   return (
     <article className="product-card">
       <MediaFrame
-        media={image}
+        media={product.image}
+        fallbackSrc={product.fallbackImageSrc || undefined}
         alt={product.name}
         label={`صورة ${product.name} ستضاف من لوحة التحكم`}
         className="product-card__media"
@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: Product }) {
         {product.partNumber ? <p>{product.partNumber}</p> : null}
         <Link href={`/contact?product=${product.slug}`} className="product-card__action">
           استفسر الآن
-          <span aria-hidden="true">↗</span>
+          <WhatsappLogo aria-hidden="true" weight="bold" />
         </Link>
       </div>
     </article>
@@ -40,21 +40,11 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
           <p>منتجات مختارة من قطع غيار الخرسانة</p>
         </div>
 
-        {products.length ? (
-          <div className="product-grid">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        ) : (
-          <div className="content-empty-state">
-            <p>ستظهر المنتجات المميزة هنا بعد نشرها من لوحة التحكم.</p>
-            <Link href="/products" className="text-link">
-              تصفح المنتجات
-              <span aria-hidden="true">←</span>
-            </Link>
-          </div>
-        )}
+        <div className="product-grid">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </section>
   )

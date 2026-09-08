@@ -9,7 +9,17 @@ export type HomepageCategory = {
   slug: string
   description: string | null
   image: Media | null
+  fallbackImageSrc: string
   brandNames: string[]
+}
+
+export type HomepageProduct = {
+  id: number | string
+  name: string
+  slug: string
+  partNumber: string | null
+  image: Media | null
+  fallbackImageSrc: string | null
 }
 
 export type HomepageSiteSettings = {
@@ -22,7 +32,7 @@ export type HomepageSiteSettings = {
 
 export type HomepageData = {
   categories: HomepageCategory[]
-  featuredProducts: Product[]
+  featuredProducts: HomepageProduct[]
   siteSettings: HomepageSiteSettings
   contentSource: 'cms' | 'fallback'
 }
@@ -35,6 +45,79 @@ const confirmedCategoryDefaults = [
 ] as const
 
 const confirmedPumpBrands = ['Zoomlion', 'Schwing', 'Putzmeister'] as const
+
+const categoryPreviewContent: Record<
+  (typeof confirmedCategoryDefaults)[number]['slug'],
+  { description: string; image: string }
+> = {
+  'concrete-pump-parts': {
+    description: 'قطع غيار لمضخات الخرسانة',
+    image: '/images/home/category-pump.webp',
+  },
+  'concrete-mixer-parts': {
+    description: 'قطع غيار الخلاطات الخرسانية',
+    image: '/images/home/category-mixer-approved.webp',
+  },
+  'concrete-plant-parts': {
+    description: 'قطع غيار لمحطات الخرسانة',
+    image: '/images/home/category-batching-approved.webp',
+  },
+  'general-parts': {
+    description: 'قطع غيار متنوعة لمعدات الخرسانة',
+    image: '/images/home/about-parts.webp',
+  },
+}
+
+const confirmedProductPreviews: HomepageProduct[] = [
+  {
+    id: 'preview-ring-250',
+    name: 'حلقة 250',
+    slug: 'ring-250',
+    partNumber: null,
+    image: null,
+    fallbackImageSrc: '/images/products/ring-250.webp',
+  },
+  {
+    id: 'preview-ring-210',
+    name: 'حلقة 210',
+    slug: 'ring-210',
+    partNumber: null,
+    image: null,
+    fallbackImageSrc: '/images/products/ring-210.webp',
+  },
+  {
+    id: 'preview-ring-220',
+    name: 'حلقة 220',
+    slug: 'ring-220',
+    partNumber: null,
+    image: null,
+    fallbackImageSrc: '/images/products/ring-220.webp',
+  },
+  {
+    id: 'preview-ring-230',
+    name: 'حلقة 230',
+    slug: 'ring-230',
+    partNumber: null,
+    image: null,
+    fallbackImageSrc: '/images/products/ring-230.webp',
+  },
+  {
+    id: 'preview-ram-230',
+    name: 'رامة 230',
+    slug: 'ram-230',
+    partNumber: null,
+    image: null,
+    fallbackImageSrc: '/images/products/ram-230.webp',
+  },
+  {
+    id: 'preview-ram-250',
+    name: 'رامة 250',
+    slug: 'ram-250',
+    partNumber: null,
+    image: null,
+    fallbackImageSrc: '/images/products/ram-250.webp',
+  },
+]
 
 const confirmedContacts = [
   { name: 'عبدالرحمن', role: 'مبيعات', phone: '01031080031' },
@@ -86,12 +169,15 @@ function toWhatsAppUrl(phone: string | null | undefined) {
 }
 
 function mapCategory(category: ProductCategory, brandNames: string[]): HomepageCategory {
+  const preview = categoryPreviewContent[category.slug as keyof typeof categoryPreviewContent]
+
   return {
     id: category.id,
     title: category.title,
     slug: category.slug,
-    description: category.description ?? null,
+    description: category.description ?? preview?.description ?? null,
     image: isMedia(category.image) ? category.image : null,
+    fallbackImageSrc: preview?.image ?? '/images/home/about-parts.webp',
     brandNames,
   }
 }
@@ -101,8 +187,9 @@ function buildFallbackCategories(): HomepageCategory[] {
     id: `fallback-${category.slug}`,
     title: category.title,
     slug: category.slug,
-    description: null,
+    description: categoryPreviewContent[category.slug].description,
     image: null,
+    fallbackImageSrc: categoryPreviewContent[category.slug].image,
     brandNames: index === 0 ? [...confirmedPumpBrands] : [],
   }))
 }
@@ -121,14 +208,26 @@ function mergeConfirmedCategories(
         id: `fallback-${defaultCategory.slug}`,
         title: defaultCategory.title,
         slug: defaultCategory.slug,
-        description: null,
+        description: categoryPreviewContent[defaultCategory.slug].description,
         image: null,
+        fallbackImageSrc: categoryPreviewContent[defaultCategory.slug].image,
         brandNames: index === 0 ? brandNames : [],
       }
     }
 
     return mapCategory(category, index === 0 ? brandNames : [])
   })
+}
+
+function mapProduct(product: Product): HomepageProduct {
+  return {
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    partNumber: product.partNumber ?? null,
+    image: isMedia(product.mainImage) ? product.mainImage : null,
+    fallbackImageSrc: null,
+  }
 }
 
 function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
@@ -149,7 +248,20 @@ function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
   }
 }
 
+function buildFallbackHomepageData(): HomepageData {
+  return {
+    categories: buildFallbackCategories(),
+    featuredProducts: confirmedProductPreviews,
+    siteSettings: fallbackSiteSettings,
+    contentSource: 'fallback',
+  }
+}
+
 export async function getHomepageData(): Promise<HomepageData> {
+  if (process.env.HOMEPAGE_PREVIEW_CONTENT === 'true') {
+    return buildFallbackHomepageData()
+  }
+
   try {
     const payload = await withTimeout(getPayload({ config }), 2500)
     if (!payload) throw new Error('Payload connection timed out')
@@ -188,23 +300,22 @@ export async function getHomepageData(): Promise<HomepageData> {
 
     const [categoryResult, brandResult, productResult, siteSettings] = result
 
-    const brandNames = (brandResult.docs as Brand[]).map((brand) => brand.name).filter(Boolean)
+    const availableBrandNames = new Set(
+      (brandResult.docs as Brand[]).map((brand) => brand.name).filter(Boolean),
+    )
+    const brandNames = confirmedPumpBrands.filter((brand) => availableBrandNames.has(brand))
+    const cmsProducts = productResult.docs as Product[]
 
     return {
       categories: mergeConfirmedCategories(
         categoryResult.docs as ProductCategory[],
         brandNames.length ? brandNames : [...confirmedPumpBrands],
       ),
-      featuredProducts: productResult.docs as Product[],
+      featuredProducts: cmsProducts.length ? cmsProducts.map(mapProduct) : confirmedProductPreviews,
       siteSettings: mapSiteSettings(siteSettings as SiteSetting),
       contentSource: 'cms',
     }
   } catch {
-    return {
-      categories: buildFallbackCategories(),
-      featuredProducts: [],
-      siteSettings: fallbackSiteSettings,
-      contentSource: 'fallback',
-    }
+    return buildFallbackHomepageData()
   }
 }

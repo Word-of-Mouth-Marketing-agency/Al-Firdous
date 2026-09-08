@@ -1,43 +1,43 @@
+import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowLeft, WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
 
-import { MediaFrame } from '@/components/site/MediaFrame'
-import type { Media } from '@/payload-types'
-
-type HeroProps = {
-  media?: Media | null
-}
-
-export function Hero({ media }: HeroProps) {
+export function Hero() {
   return (
     <section className="hero-section" aria-labelledby="hero-title">
-      <div className="site-container hero-section__grid">
+      <Image
+        src="/images/home/hero-industrial.webp"
+        alt="محطة خرسانة وشاحنة خلاطة وقطع غيار لمعدات الخرسانة"
+        fill
+        loading="eager"
+        fetchPriority="high"
+        sizes="100vw"
+        className="hero-section__image"
+      />
+      <div className="hero-section__veil" aria-hidden="true" />
+      <div className="site-container hero-section__inner">
         <div className="hero-section__copy">
-          <p className="hero-section__eyebrow">قطع غيار معدات الخرسانة</p>
           <h1 id="hero-title">
             كل ما تحتاجه من قطع غيار الخرسانة
-            <br className="hero-section__desktop-break" />
-            {' '}في مكان واحد
+            <br />
+            في مكان واحد
           </h1>
           <p className="hero-section__support">قطع غيار أصلية • جودة عالية • توصيل سريع</p>
           <div className="hero-section__actions">
             <Link href="/products" className="button button--primary">
               تصفح المنتجات
-              <span aria-hidden="true">←</span>
+              <ArrowLeft aria-hidden="true" weight="bold" />
             </Link>
             <Link href="/contact" className="button button--secondary">
               تواصل معنا
+              <WhatsappLogo aria-hidden="true" weight="bold" />
             </Link>
           </div>
         </div>
-
-        <MediaFrame
-          media={media}
-          alt="معدات وقطع غيار الخرسانة"
-          label="الصورة الرئيسية ستضاف من لوحة التحكم"
-          className="hero-section__media"
-          priority
-          sizes="(min-width: 1024px) 52vw, 100vw"
-        />
+        <p className="hero-section__note" aria-hidden="true">
+          شريكك
+          <span>في استمرارية العمل</span>
+        </p>
       </div>
     </section>
   )
