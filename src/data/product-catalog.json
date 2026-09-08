@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-08T10:54:23.224Z",
   "sourceDir": "A:/Downloads/firdous-media",
   "totalSourceFiles": 57,
+  "catalogRecords": 57,
   "uniqueVisualAssets": 50,
   "duplicateSourceGroups": [
     [
@@ -119,7 +119,7 @@
       "slug": "schwing-pump-part-06-590b0f8b",
       "name": "جشمة 120",
       "categorySlug": "concrete-pump-parts",
-      "brandSlug": null,
+      "brandSlug": "schwing",
       "featured": true,
       "image": "/images/products/catalog/schwing-pump-part-06-590b0f8b.webp",
       "sourceFile": "جشمة 120.png",
@@ -140,8 +140,7 @@
       "image": "/images/products/catalog/schwing-pump-part-07-dce50b39.webp",
       "sourceFile": "جشمة بستم ضح 125 شيفينج.png",
       "sourceAliases": [
-        "جشمة بستم ضح 125 شيفينج.png",
-        "جشمة بستم ضخ 120 شيفينج.png"
+        "جشمة بستم ضح 125 شيفينج.png"
       ],
       "sourceHash": "dce50b393efb277bc4fb6f229650113d60a945e0fd1f8cb74c9b85d1b6e20865",
       "sourceWidth": 1086,
@@ -149,12 +148,28 @@
     },
     {
       "id": "catalog-08",
-      "slug": "schwing-pump-part-08-57766b47",
+      "slug": "schwing-pump-part-08-dce50b39",
+      "name": "جشمة بستم ضخ 120 شيفينج",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-08-dce50b39.webp",
+      "sourceFile": "جشمة بستم ضخ 120 شيفينج.png",
+      "sourceAliases": [
+        "جشمة بستم ضخ 120 شيفينج.png"
+      ],
+      "sourceHash": "dce50b393efb277bc4fb6f229650113d60a945e0fd1f8cb74c9b85d1b6e20865",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448
+    },
+    {
+      "id": "catalog-09",
+      "slug": "schwing-pump-part-09-57766b47",
       "name": "جشمة شيفينج ( تركي )",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-08-57766b47.webp",
+      "image": "/images/products/catalog/schwing-pump-part-09-57766b47.webp",
       "sourceFile": "جشمة شيفينج ( تركي ).png",
       "sourceAliases": [
         "جشمة شيفينج ( تركي ).png"
@@ -164,13 +179,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-09",
-      "slug": "schwing-pump-part-09-51266a3d",
+      "id": "catalog-10",
+      "slug": "schwing-pump-part-10-51266a3d",
       "name": "جشمة شيفينج ( صيني )",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-09-51266a3d.webp",
+      "image": "/images/products/catalog/schwing-pump-part-10-51266a3d.webp",
       "sourceFile": "جشمة شيفينج ( صيني ).png",
       "sourceAliases": [
         "جشمة شيفينج ( صيني ).png"
@@ -180,13 +195,13 @@
       "sourceHeight": 1086
     },
     {
-      "id": "catalog-10",
-      "slug": "schwing-pump-part-10-881c828c",
+      "id": "catalog-11",
+      "slug": "schwing-pump-part-11-881c828c",
       "name": "جشمة شيفينج 125",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-10-881c828c.webp",
+      "image": "/images/products/catalog/schwing-pump-part-11-881c828c.webp",
       "sourceFile": "جشمة شيفينج 125.png",
       "sourceAliases": [
         "جشمة شيفينج 125.png"
@@ -196,13 +211,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-11",
-      "slug": "schwing-pump-part-11-bb183a23",
+      "id": "catalog-12",
+      "slug": "schwing-pump-part-12-bb183a23",
       "name": "جشمة شيفينج 130",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-11-bb183a23.webp",
+      "image": "/images/products/catalog/schwing-pump-part-12-bb183a23.webp",
       "sourceFile": "جشمة شيفينج 130.png",
       "sourceAliases": [
         "جشمة شيفينج 130.png"
@@ -212,13 +227,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-12",
-      "slug": "schwing-pump-part-12-35b5f238",
+      "id": "catalog-13",
+      "slug": "schwing-pump-part-13-35b5f238",
       "name": "جشمة شيفينج 140",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-12-35b5f238.webp",
+      "image": "/images/products/catalog/schwing-pump-part-13-35b5f238.webp",
       "sourceFile": "جشمة شيفينج 140.png",
       "sourceAliases": [
         "جشمة شيفينج 140.png"
@@ -228,13 +243,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-13",
-      "slug": "schwing-pump-part-13-afc7d4fc",
+      "id": "catalog-14",
+      "slug": "schwing-pump-part-14-afc7d4fc",
       "name": "جشمة شيفينج 75",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-13-afc7d4fc.webp",
+      "image": "/images/products/catalog/schwing-pump-part-14-afc7d4fc.webp",
       "sourceFile": "جشمة شيفينج 75.png",
       "sourceAliases": [
         "جشمة شيفينج 75.png"
@@ -244,13 +259,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-14",
-      "slug": "schwing-pump-part-14-b9b5a6d3",
+      "id": "catalog-15",
+      "slug": "schwing-pump-part-15-b9b5a6d3",
       "name": "جشمة شيفينج 80",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-14-b9b5a6d3.webp",
+      "image": "/images/products/catalog/schwing-pump-part-15-b9b5a6d3.webp",
       "sourceFile": "جشمة شيفينج 80.png",
       "sourceAliases": [
         "جشمة شيفينج 80.png"
@@ -260,13 +275,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-15",
-      "slug": "schwing-pump-part-15-30a5319b",
+      "id": "catalog-16",
+      "slug": "schwing-pump-part-16-30a5319b",
       "name": "جلبة بدون شفه شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-15-30a5319b.webp",
+      "image": "/images/products/catalog/schwing-pump-part-16-30a5319b.webp",
       "sourceFile": "جلبة بدون شفه شيفينج_.png",
       "sourceAliases": [
         "جلبة بدون شفه شيفينج_.png"
@@ -276,13 +291,13 @@
       "sourceHeight": 1335
     },
     {
-      "id": "catalog-16",
-      "slug": "schwing-pump-part-16-8b0c1b3a",
+      "id": "catalog-17",
+      "slug": "schwing-pump-part-17-8b0c1b3a",
       "name": "جلبة بشفة شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-16-8b0c1b3a.webp",
+      "image": "/images/products/catalog/schwing-pump-part-17-8b0c1b3a.webp",
       "sourceFile": "جلبة بشفة شيفينج_.png",
       "sourceAliases": [
         "جلبة بشفة شيفينج_.png"
@@ -292,13 +307,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-17",
-      "slug": "schwing-pump-part-17-92abc351",
+      "id": "catalog-18",
+      "slug": "schwing-pump-part-18-92abc351",
       "name": "جلبة بشفه شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-17-92abc351.webp",
+      "image": "/images/products/catalog/schwing-pump-part-18-92abc351.webp",
       "sourceFile": "جلبة بشفه شيفينج_.png",
       "sourceAliases": [
         "جلبة بشفه شيفينج_.png"
@@ -308,13 +323,13 @@
       "sourceHeight": 1402
     },
     {
-      "id": "catalog-18",
-      "slug": "schwing-pump-part-18-8fc43a44",
+      "id": "catalog-19",
+      "slug": "schwing-pump-part-19-8fc43a44",
       "name": "جلبة حشو قلاب صغيرة شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-18-8fc43a44.webp",
+      "image": "/images/products/catalog/schwing-pump-part-19-8fc43a44.webp",
       "sourceFile": "جلبة حشو قلاب صغيرة شيفينج.png",
       "sourceAliases": [
         "جلبة حشو قلاب صغيرة شيفينج.png"
@@ -324,13 +339,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-19",
-      "slug": "schwing-pump-part-19-9f42d2db",
+      "id": "catalog-20",
+      "slug": "schwing-pump-part-20-9f42d2db",
       "name": "جنب قلاب حديث شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-19-9f42d2db.webp",
+      "image": "/images/products/catalog/schwing-pump-part-20-9f42d2db.webp",
       "sourceFile": "جنب قلاب حديث شيفينج.jpg",
       "sourceAliases": [
         "جنب قلاب حديث شيفينج.jpg"
@@ -340,16 +355,31 @@
       "sourceHeight": 1536
     },
     {
-      "id": "catalog-20",
-      "slug": "schwing-pump-part-20-158d131d",
+      "id": "catalog-21",
+      "slug": "schwing-pump-part-21-158d131d",
       "name": "جنب قلاب داخلي مفتوح شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-20-158d131d.webp",
+      "image": "/images/products/catalog/schwing-pump-part-21-158d131d.webp",
       "sourceFile": "جنب قلاب داخلي مفتوح شيفينج_.png",
       "sourceAliases": [
-        "جنب قلاب داخلي مفتوح شيفينج_.png",
+        "جنب قلاب داخلي مفتوح شيفينج_.png"
+      ],
+      "sourceHash": "158d131d70e514aee67076cab45650152058d20d9fb50c2a639c5d0588525411",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448
+    },
+    {
+      "id": "catalog-22",
+      "slug": "schwing-pump-part-22-158d131d",
+      "name": "جنب قلاب داخلي مقفول شيفينج",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-22-158d131d.webp",
+      "sourceFile": "جنب قلاب داخلي مقفول شيفينج_.png",
+      "sourceAliases": [
         "جنب قلاب داخلي مقفول شيفينج_.png"
       ],
       "sourceHash": "158d131d70e514aee67076cab45650152058d20d9fb50c2a639c5d0588525411",
@@ -357,13 +387,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-21",
-      "slug": "schwing-pump-part-21-b90a1cc4",
+      "id": "catalog-23",
+      "slug": "schwing-pump-part-23-b90a1cc4",
       "name": "جنب قلاب مفتوح شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-21-b90a1cc4.webp",
+      "image": "/images/products/catalog/schwing-pump-part-23-b90a1cc4.webp",
       "sourceFile": "جنب قلاب مفتوح شيفينج.jpg",
       "sourceAliases": [
         "جنب قلاب مفتوح شيفينج.jpg"
@@ -373,13 +403,13 @@
       "sourceHeight": 1536
     },
     {
-      "id": "catalog-22",
-      "slug": "schwing-pump-part-22-89621704",
+      "id": "catalog-24",
+      "slug": "schwing-pump-part-24-89621704",
       "name": "جنب قلاب مقفول شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-22-89621704.webp",
+      "image": "/images/products/catalog/schwing-pump-part-24-89621704.webp",
       "sourceFile": "جنب قلاب مقفول شيفينج.jpg",
       "sourceAliases": [
         "جنب قلاب مقفول شيفينج.jpg"
@@ -389,13 +419,13 @@
       "sourceHeight": 1536
     },
     {
-      "id": "catalog-23",
-      "slug": "schwing-pump-part-23-b5637e71",
+      "id": "catalog-25",
+      "slug": "schwing-pump-part-25-b5637e71",
       "name": "حلقة 210 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-23-b5637e71.webp",
+      "image": "/images/products/catalog/schwing-pump-part-25-b5637e71.webp",
       "sourceFile": "حلقة 210 شيفينج.png",
       "sourceAliases": [
         "حلقة 210 شيفينج.png"
@@ -405,13 +435,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-24",
-      "slug": "schwing-pump-part-24-ac76c1ec",
+      "id": "catalog-26",
+      "slug": "schwing-pump-part-26-ac76c1ec",
       "name": "حلقة 220 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-24-ac76c1ec.webp",
+      "image": "/images/products/catalog/schwing-pump-part-26-ac76c1ec.webp",
       "sourceFile": "حلقة 220 شيفينج.png",
       "sourceAliases": [
         "حلقة 220 شيفينج.png"
@@ -421,16 +451,47 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-25",
-      "slug": "schwing-pump-part-25-23ab9a5a",
+      "id": "catalog-27",
+      "slug": "schwing-pump-part-27-23ab9a5a",
       "name": "حلقة 230 شيفينج جودة عالية",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-25-23ab9a5a.webp",
+      "image": "/images/products/catalog/schwing-pump-part-27-23ab9a5a.webp",
       "sourceFile": "حلقة 230 شيفينج جودة عالية_.png",
       "sourceAliases": [
-        "حلقة 230 شيفينج جودة عالية_.png",
+        "حلقة 230 شيفينج جودة عالية_.png"
+      ],
+      "sourceHash": "23ab9a5a53902b2ab9e55eddcc7c276b0217ee5fb5a379ce547c352343b61f49",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448
+    },
+    {
+      "id": "catalog-28",
+      "slug": "schwing-pump-part-28-d7dd7073",
+      "name": "حلقة 230 شيفينج",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-28-d7dd7073.webp",
+      "sourceFile": "حلقة 230 شيفينج.png",
+      "sourceAliases": [
+        "حلقة 230 شيفينج.png"
+      ],
+      "sourceHash": "d7dd7073440378d5ec8cecd0fe7b524f3d8c9ff7a39f34712edc7eb1f8cbef7a",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448
+    },
+    {
+      "id": "catalog-29",
+      "slug": "schwing-pump-part-29-23ab9a5a",
+      "name": "حلقة 250 شيفينج جودة عالية",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-29-23ab9a5a.webp",
+      "sourceFile": "حلقة 250 شيفينج جودة عالية.png",
+      "sourceAliases": [
         "حلقة 250 شيفينج جودة عالية.png"
       ],
       "sourceHash": "23ab9a5a53902b2ab9e55eddcc7c276b0217ee5fb5a379ce547c352343b61f49",
@@ -438,16 +499,15 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-26",
-      "slug": "schwing-pump-part-26-d7dd7073",
-      "name": "حلقة 230 شيفينج",
+      "id": "catalog-30",
+      "slug": "schwing-pump-part-30-d7dd7073",
+      "name": "حلقة 250 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-26-d7dd7073.webp",
-      "sourceFile": "حلقة 230 شيفينج.png",
+      "image": "/images/products/catalog/schwing-pump-part-30-d7dd7073.webp",
+      "sourceFile": "حلقة 250 شيفينج_.png",
       "sourceAliases": [
-        "حلقة 230 شيفينج.png",
         "حلقة 250 شيفينج_.png"
       ],
       "sourceHash": "d7dd7073440378d5ec8cecd0fe7b524f3d8c9ff7a39f34712edc7eb1f8cbef7a",
@@ -455,13 +515,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-27",
-      "slug": "schwing-pump-part-27-918cbd92",
+      "id": "catalog-31",
+      "slug": "schwing-pump-part-31-918cbd92",
       "name": "حلقة منع تسريب شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-27-918cbd92.webp",
+      "image": "/images/products/catalog/schwing-pump-part-31-918cbd92.webp",
       "sourceFile": "حلقة منع تسريب شيفينح.jpg",
       "sourceAliases": [
         "حلقة منع تسريب شيفينح.jpg"
@@ -471,13 +531,13 @@
       "sourceHeight": 1024
     },
     {
-      "id": "catalog-28",
-      "slug": "schwing-pump-part-28-1de3bc03",
+      "id": "catalog-32",
+      "slug": "schwing-pump-part-32-1de3bc03",
       "name": "رامة شيفينج 230",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-28-1de3bc03.webp",
+      "image": "/images/products/catalog/schwing-pump-part-32-1de3bc03.webp",
       "sourceFile": "رامة شيفينج 230.png",
       "sourceAliases": [
         "رامة شيفينج 230.png"
@@ -487,13 +547,13 @@
       "sourceHeight": 1450
     },
     {
-      "id": "catalog-29",
-      "slug": "schwing-pump-part-29-edf92b19",
+      "id": "catalog-33",
+      "slug": "schwing-pump-part-33-edf92b19",
       "name": "رامة شيفينج 250",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-29-edf92b19.webp",
+      "image": "/images/products/catalog/schwing-pump-part-33-edf92b19.webp",
       "sourceFile": "رامة شيفينج 250.png",
       "sourceAliases": [
         "رامة شيفينج 250.png"
@@ -503,13 +563,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-30",
-      "slug": "schwing-pump-part-30-5677f0de",
+      "id": "catalog-34",
+      "slug": "schwing-pump-part-34-5677f0de",
       "name": "روك 230 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-30-5677f0de.webp",
+      "image": "/images/products/catalog/schwing-pump-part-34-5677f0de.webp",
       "sourceFile": "روك 230 شيفينج.jpg",
       "sourceAliases": [
         "روك 230 شيفينج.jpg"
@@ -519,13 +579,13 @@
       "sourceHeight": 1536
     },
     {
-      "id": "catalog-31",
-      "slug": "schwing-pump-part-31-4f19ec57",
+      "id": "catalog-35",
+      "slug": "schwing-pump-part-35-4f19ec57",
       "name": "سيل كلوي 180 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-31-4f19ec57.webp",
+      "image": "/images/products/catalog/schwing-pump-part-35-4f19ec57.webp",
       "sourceFile": "سيل كلوي 180 شيفينج.jpg",
       "sourceAliases": [
         "سيل كلوي 180 شيفينج.jpg"
@@ -535,13 +595,13 @@
       "sourceHeight": 1024
     },
     {
-      "id": "catalog-32",
-      "slug": "schwing-pump-part-32-335cdf64",
+      "id": "catalog-36",
+      "slug": "schwing-pump-part-36-335cdf64",
       "name": "سيل مسطرة شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-32-335cdf64.webp",
+      "image": "/images/products/catalog/schwing-pump-part-36-335cdf64.webp",
       "sourceFile": "سيل مسطرة شيفينج.png",
       "sourceAliases": [
         "سيل مسطرة شيفينج.png"
@@ -551,13 +611,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-33",
-      "slug": "schwing-pump-part-33-a30fb640",
+      "id": "catalog-37",
+      "slug": "schwing-pump-part-37-a30fb640",
       "name": "شاحن شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-33-a30fb640.webp",
+      "image": "/images/products/catalog/schwing-pump-part-37-a30fb640.webp",
       "sourceFile": "شاحن شيفينج.png",
       "sourceAliases": [
         "شاحن شيفينج.png"
@@ -567,13 +627,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-34",
-      "slug": "schwing-pump-part-34-60a5fa79",
+      "id": "catalog-38",
+      "slug": "schwing-pump-part-38-60a5fa79",
       "name": "طقم حشو بستم روك",
       "categorySlug": "concrete-pump-parts",
-      "brandSlug": null,
+      "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-34-60a5fa79.webp",
+      "image": "/images/products/catalog/schwing-pump-part-38-60a5fa79.webp",
       "sourceFile": "طقم حشو بستم روك_.jpg",
       "sourceAliases": [
         "طقم حشو بستم روك_.jpg"
@@ -583,13 +643,13 @@
       "sourceHeight": 1536
     },
     {
-      "id": "catalog-35",
-      "slug": "schwing-pump-part-35-75682af9",
+      "id": "catalog-39",
+      "slug": "schwing-pump-part-39-75682af9",
       "name": "طلمبة غسيل بلح",
       "categorySlug": "concrete-pump-parts",
-      "brandSlug": null,
+      "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-35-75682af9.webp",
+      "image": "/images/products/catalog/schwing-pump-part-39-75682af9.webp",
       "sourceFile": "طلمبة غسيل بلح.jpg",
       "sourceAliases": [
         "طلمبة غسيل بلح.jpg"
@@ -599,13 +659,13 @@
       "sourceHeight": 864
     },
     {
-      "id": "catalog-36",
-      "slug": "schwing-pump-part-36-fbf5d3d6",
+      "id": "catalog-40",
+      "slug": "schwing-pump-part-40-fbf5d3d6",
       "name": "عامود روك طويل شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-36-fbf5d3d6.webp",
+      "image": "/images/products/catalog/schwing-pump-part-40-fbf5d3d6.webp",
       "sourceFile": "عامود روك طويل شيفينج.jpg",
       "sourceAliases": [
         "عامود روك طويل شيفينج.jpg"
@@ -615,13 +675,13 @@
       "sourceHeight": 1168
     },
     {
-      "id": "catalog-37",
-      "slug": "schwing-pump-part-37-f0490209",
+      "id": "catalog-41",
+      "slug": "schwing-pump-part-41-f0490209",
       "name": "عامود روك قصير شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-37-f0490209.webp",
+      "image": "/images/products/catalog/schwing-pump-part-41-f0490209.webp",
       "sourceFile": "عامود روك قصير شيفينج.jpg",
       "sourceAliases": [
         "عامود روك قصير شيفينج.jpg"
@@ -631,13 +691,13 @@
       "sourceHeight": 1024
     },
     {
-      "id": "catalog-38",
-      "slug": "schwing-pump-part-38-c53d9c0c",
+      "id": "catalog-42",
+      "slug": "schwing-pump-part-42-c53d9c0c",
       "name": "عامود قلاب شامل الريش شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-38-c53d9c0c.webp",
+      "image": "/images/products/catalog/schwing-pump-part-42-c53d9c0c.webp",
       "sourceFile": "عامود قلاب شامل الريش شيفينج.jpg",
       "sourceAliases": [
         "عامود قلاب شامل الريش شيفينج.jpg"
@@ -647,13 +707,13 @@
       "sourceHeight": 1536
     },
     {
-      "id": "catalog-39",
-      "slug": "schwing-pump-part-39-4da2cb50",
+      "id": "catalog-43",
+      "slug": "schwing-pump-part-43-4da2cb50",
       "name": "قاعدة شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-39-4da2cb50.webp",
+      "image": "/images/products/catalog/schwing-pump-part-43-4da2cb50.webp",
       "sourceFile": "قاعدة شيفينج.png",
       "sourceAliases": [
         "قاعدة شيفينج.png"
@@ -663,13 +723,13 @@
       "sourceHeight": 1086
     },
     {
-      "id": "catalog-40",
-      "slug": "schwing-pump-part-40-64bdf880",
+      "id": "catalog-44",
+      "slug": "schwing-pump-part-44-64bdf880",
       "name": "قلة رامة ( تركي )",
       "categorySlug": "concrete-pump-parts",
-      "brandSlug": null,
+      "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-40-64bdf880.webp",
+      "image": "/images/products/catalog/schwing-pump-part-44-64bdf880.webp",
       "sourceFile": "قلة رامة ( تركي ).png",
       "sourceAliases": [
         "قلة رامة ( تركي ).png"
@@ -679,13 +739,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-41",
-      "slug": "schwing-pump-part-41-b8d9ed07",
+      "id": "catalog-45",
+      "slug": "schwing-pump-part-45-b8d9ed07",
       "name": "قلة رامة ( صيني )",
       "categorySlug": "concrete-pump-parts",
-      "brandSlug": null,
+      "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-41-b8d9ed07.webp",
+      "image": "/images/products/catalog/schwing-pump-part-45-b8d9ed07.webp",
       "sourceFile": "قلة رامة ( صيني ).png",
       "sourceAliases": [
         "قلة رامة ( صيني ).png"
@@ -695,16 +755,31 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-42",
-      "slug": "schwing-pump-part-42-70394ae1",
+      "id": "catalog-46",
+      "slug": "schwing-pump-part-46-70394ae1",
       "name": "كافر مرايا شيفينج 230",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-42-70394ae1.webp",
+      "image": "/images/products/catalog/schwing-pump-part-46-70394ae1.webp",
       "sourceFile": "كافر مرايا شيفينج 230.png",
       "sourceAliases": [
-        "كافر مرايا شيفينج 230.png",
+        "كافر مرايا شيفينج 230.png"
+      ],
+      "sourceHash": "70394ae194c66999b33f920c726ec5726b26f2fffb3911e8b6c11824f347b81f",
+      "sourceWidth": 1402,
+      "sourceHeight": 1122
+    },
+    {
+      "id": "catalog-47",
+      "slug": "schwing-pump-part-47-70394ae1",
+      "name": "كافر مرايا شيفينج 250",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-47-70394ae1.webp",
+      "sourceFile": "كافر مرايا شيفينج 250.png",
+      "sourceAliases": [
         "كافر مرايا شيفينج 250.png"
       ],
       "sourceHash": "70394ae194c66999b33f920c726ec5726b26f2fffb3911e8b6c11824f347b81f",
@@ -712,13 +787,13 @@
       "sourceHeight": 1122
     },
     {
-      "id": "catalog-43",
-      "slug": "schwing-pump-part-43-29f17dd3",
+      "id": "catalog-48",
+      "slug": "schwing-pump-part-48-29f17dd3",
       "name": "ماتور قلاب شيفينج ( تركي )",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-43-29f17dd3.webp",
+      "image": "/images/products/catalog/schwing-pump-part-48-29f17dd3.webp",
       "sourceFile": "ماتور قلاب شيفينج ( تركي ).png",
       "sourceAliases": [
         "ماتور قلاب شيفينج ( تركي ).png"
@@ -728,13 +803,13 @@
       "sourceHeight": 1450
     },
     {
-      "id": "catalog-44",
-      "slug": "schwing-pump-part-44-ffb74c1c",
+      "id": "catalog-49",
+      "slug": "schwing-pump-part-49-ffb74c1c",
       "name": "ماتور قلاب شيفينج ( صيني )",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-44-ffb74c1c.webp",
+      "image": "/images/products/catalog/schwing-pump-part-49-ffb74c1c.webp",
       "sourceFile": "ماتور قلاب شيفينج ( صيني )_.png",
       "sourceAliases": [
         "ماتور قلاب شيفينج ( صيني )_.png"
@@ -744,13 +819,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-45",
-      "slug": "schwing-pump-part-45-cc6b1181",
+      "id": "catalog-50",
+      "slug": "schwing-pump-part-50-cc6b1181",
       "name": "مرايا 180 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-45-cc6b1181.webp",
+      "image": "/images/products/catalog/schwing-pump-part-50-cc6b1181.webp",
       "sourceFile": "مرايا 180 شيفينج.png",
       "sourceAliases": [
         "مرايا 180 شيفينج.png"
@@ -760,13 +835,13 @@
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-46",
-      "slug": "schwing-pump-part-46-85f0f6d6",
+      "id": "catalog-51",
+      "slug": "schwing-pump-part-51-85f0f6d6",
       "name": "نضارة 230 شيفينج ( تركي )",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-46-85f0f6d6.webp",
+      "image": "/images/products/catalog/schwing-pump-part-51-85f0f6d6.webp",
       "sourceFile": "نضارة 230 شيفينج ( تركي ).png",
       "sourceAliases": [
         "نضارة 230 شيفينج ( تركي ).png"
@@ -776,47 +851,45 @@
       "sourceHeight": 1194
     },
     {
-      "id": "catalog-47",
-      "slug": "schwing-pump-part-47-5bcc6cea",
+      "id": "catalog-52",
+      "slug": "schwing-pump-part-52-5bcc6cea",
       "name": "نضارة 230 شيفينج جودة عالية",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-47-5bcc6cea.webp",
+      "image": "/images/products/catalog/schwing-pump-part-52-5bcc6cea.webp",
       "sourceFile": "نضارة 230 شيفينج جودة عالية.png",
       "sourceAliases": [
-        "نضارة 230 شيفينج جودة عالية.png",
-        "نضارة 250 شيفينج جودة عالية.png"
+        "نضارة 230 شيفينج جودة عالية.png"
       ],
       "sourceHash": "5bcc6ceaa61e37a87b490b3fa61e5914baf742130687444a130771915f0a74cc",
       "sourceWidth": 1153,
       "sourceHeight": 1364
     },
     {
-      "id": "catalog-48",
-      "slug": "schwing-pump-part-48-f462ceb7",
+      "id": "catalog-53",
+      "slug": "schwing-pump-part-53-f462ceb7",
       "name": "نضارة 230 شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-48-f462ceb7.webp",
+      "image": "/images/products/catalog/schwing-pump-part-53-f462ceb7.webp",
       "sourceFile": "نضارة 230 شيفينج.png",
       "sourceAliases": [
-        "نضارة 230 شيفينج.png",
-        "نضارة 250 شيفينج.png"
+        "نضارة 230 شيفينج.png"
       ],
       "sourceHash": "f462ceb76e819e0eeaaa626b5f3eeef6c041a1ae7c0141d2ad577aa78966da0b",
       "sourceWidth": 1086,
       "sourceHeight": 1448
     },
     {
-      "id": "catalog-49",
-      "slug": "schwing-pump-part-49-e9db32b5",
+      "id": "catalog-54",
+      "slug": "schwing-pump-part-54-e9db32b5",
       "name": "نضارة 250 شيفينج ( تركي )",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-49-e9db32b5.webp",
+      "image": "/images/products/catalog/schwing-pump-part-54-e9db32b5.webp",
       "sourceFile": "نضارة 250 شيفينج ( تركي ).png",
       "sourceAliases": [
         "نضارة 250 شيفينج ( تركي ).png"
@@ -826,13 +899,45 @@
       "sourceHeight": 1152
     },
     {
-      "id": "catalog-50",
-      "slug": "schwing-pump-part-50-3f8431c3",
+      "id": "catalog-55",
+      "slug": "schwing-pump-part-55-5bcc6cea",
+      "name": "نضارة 250 شيفينج جودة عالية",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-55-5bcc6cea.webp",
+      "sourceFile": "نضارة 250 شيفينج جودة عالية.png",
+      "sourceAliases": [
+        "نضارة 250 شيفينج جودة عالية.png"
+      ],
+      "sourceHash": "5bcc6ceaa61e37a87b490b3fa61e5914baf742130687444a130771915f0a74cc",
+      "sourceWidth": 1153,
+      "sourceHeight": 1364
+    },
+    {
+      "id": "catalog-56",
+      "slug": "schwing-pump-part-56-f462ceb7",
+      "name": "نضارة 250 شيفينج",
+      "categorySlug": "concrete-pump-parts",
+      "brandSlug": "schwing",
+      "featured": false,
+      "image": "/images/products/catalog/schwing-pump-part-56-f462ceb7.webp",
+      "sourceFile": "نضارة 250 شيفينج.png",
+      "sourceAliases": [
+        "نضارة 250 شيفينج.png"
+      ],
+      "sourceHash": "f462ceb76e819e0eeaaa626b5f3eeef6c041a1ae7c0141d2ad577aa78966da0b",
+      "sourceWidth": 1086,
+      "sourceHeight": 1448
+    },
+    {
+      "id": "catalog-57",
+      "slug": "schwing-pump-part-57-3f8431c3",
       "name": "هلالة شيفينج شاملة الترس",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
       "featured": false,
-      "image": "/images/products/catalog/schwing-pump-part-50-3f8431c3.webp",
+      "image": "/images/products/catalog/schwing-pump-part-57-3f8431c3.webp",
       "sourceFile": "هلالة شيفينج شاملة الترس.png",
       "sourceAliases": [
         "هلالة شيفينج شاملة الترس.png"

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Phone } from '@phosphor-icons/react/dist/ssr'
 
 import { BrandLogo } from '@/components/site/BrandLogo'
 import type { HomepageSiteSettings } from '@/lib/homepage-data'
@@ -11,6 +12,7 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ settings, activePath = '/' }: SiteHeaderProps) {
   const isActive = (href: string) => href === activePath
+  const phoneHref = settings.primaryPhone ? `tel:${settings.primaryPhone}` : '/contact'
 
   return (
     <header className="site-header" aria-label={settings.companyName}>
@@ -31,6 +33,11 @@ export function SiteHeader({ settings, activePath = '/' }: SiteHeaderProps) {
             </Link>
           ))}
         </nav>
+
+        <a href={phoneHref} className="button button--secondary site-header__cta">
+          <Phone aria-hidden="true" weight="bold" />
+          اتصل بنا
+        </a>
 
         <details className="site-header__mobile-menu">
           <summary
@@ -62,6 +69,10 @@ export function SiteHeader({ settings, activePath = '/' }: SiteHeaderProps) {
                   {item.label}
                 </Link>
               ))}
+              <a href={phoneHref} className="button button--secondary site-header__mobile-cta">
+                <Phone aria-hidden="true" weight="bold" />
+                اتصل بنا
+              </a>
             </div>
           </nav>
         </details>

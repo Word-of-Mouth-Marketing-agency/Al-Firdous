@@ -10,6 +10,7 @@ import { Media } from './collections/Media'
 import { Brands } from './collections/Brands'
 import { ProductCategories } from './collections/ProductCategories'
 import { Products } from './collections/Products'
+import { Inquiries } from './collections/Inquiries'
 import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, ProductCategories, Brands, Products],
+  collections: [Users, Media, ProductCategories, Brands, Products, Inquiries],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: publicSiteUrl,

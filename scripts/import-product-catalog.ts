@@ -13,6 +13,17 @@ const publicDir = path.join(repoDir, 'public')
 const categorySeeds = confirmedCategoryDefaults.map((category, index) => ({ ...category, sortOrder: index + 1 }))
 const brandSeeds = fallbackCatalogBrands.map(({ name, slug }) => ({ name, slug }))
 
+if (
+  manifest.totalSourceFiles !== 57 ||
+  manifest.catalogRecords !== 57 ||
+  manifest.products.length !== 57 ||
+  manifest.products.some(
+    (product) => product.categorySlug !== 'concrete-pump-parts' || product.brandSlug !== 'schwing',
+  )
+) {
+  throw new Error('The catalog manifest must contain exactly 57 Schwing concrete-pump-part records.')
+}
+
 const payload = await getPayload({ config })
 
 async function findOne(collection: string, field: string, value: string) {
@@ -58,12 +69,14 @@ for (const [index, product] of manifest.products.entries()) {
   const existingProduct = await findOne('products', 'slug', product.slug)
   const categoryId = categories.get(product.categorySlug)
   if (!categoryId) throw new Error(`Missing category seed: ${product.categorySlug}`)
+  const brandId = brands.get(product.brandSlug)
+  if (!brandId) throw new Error(`Missing brand seed: ${product.brandSlug}`)
   const data = {
     name: product.name,
     slug: product.slug,
     shortDescription: 'قطعة من مجموعة قطع غيار مضخات الخرسانة المتاحة للاستفسار.',
     category: categoryId,
-    ...(product.brandSlug ? { brand: brands.get(product.brandSlug) } : {}),
+    brand: brandId,
     featured: product.featured,
     active: true,
     mainImage: media.id,

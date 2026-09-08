@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { FacebookLogo, InstagramLogo, Phone, TiktokLogo, WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
 
 import { SiteFooter } from '@/components/site/SiteFooter'
+import { InquiryForm } from '@/components/contact/InquiryForm'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { getHomepageData, toWhatsAppUrl } from '@/lib/homepage-data'
 import { createPageMetadata } from '@/lib/seo'
@@ -41,16 +42,19 @@ export default async function ContactPage() {
               </div>
               <div className="contact-page-socials">{socialLinks.map(({ label, href, icon: Icon }) => <a key={label} href={href || undefined} target="_blank" rel="noreferrer"><Icon aria-hidden="true" weight="fill" /> {label}</a>)}</div>
             </div>
-            <div className="contact-people-card">
-              <h2>فريق التواصل</h2>
-              <div className="contact-people-list">
-                {siteSettings.contacts.map((contact) => (
-                  <div key={contact.phone} className="contact-person">
-                    <div><strong>{contact.name}</strong><span>{contact.role}</span></div>
-                    <a href={`tel:${contact.phone}`}>{contact.phone}</a>
-                    {toWhatsAppUrl(contact.phone) ? <a href={toWhatsAppUrl(contact.phone) || undefined} aria-label={`واتساب ${contact.name}`}><WhatsappLogo aria-hidden="true" weight="fill" /></a> : null}
-                  </div>
-                ))}
+            <div className="contact-page-side">
+              <InquiryForm />
+              <div className="contact-people-card">
+                <h2>فريق التواصل</h2>
+                <div className="contact-people-list">
+                  {siteSettings.contacts.map((contact) => (
+                    <div key={contact.phone} className="contact-person">
+                      <div><strong>{contact.name}</strong><span>{contact.role}</span></div>
+                      <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+                      {toWhatsAppUrl(contact.phone) ? <a href={toWhatsAppUrl(contact.phone) || undefined} aria-label={`واتساب ${contact.name}`}><WhatsappLogo aria-hidden="true" weight="fill" /></a> : null}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

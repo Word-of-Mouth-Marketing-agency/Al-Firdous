@@ -13,6 +13,7 @@ const files = (await fs.readdir(sourceDir))
   .filter((file) => /\.(png|jpe?g)$/i.test(file))
   .sort((a, b) => a.localeCompare(b, 'ar'))
 
+await fs.rm(outputDir, { recursive: true, force: true })
 await fs.mkdir(outputDir, { recursive: true })
 await fs.mkdir(dataDir, { recursive: true })
 await fs.mkdir(docsDir, { recursive: true })
@@ -46,14 +47,12 @@ for (const file of files) {
   groups.set(hash, [...(groups.get(hash) || []), record])
 }
 
-const uniqueGroups = [...groups.values()]
 const products = []
 
-for (const [index, group] of uniqueGroups.entries()) {
-  const canonical = group[0]
-  const slug = `schwing-pump-part-${String(index + 1).padStart(2, '0')}-${canonical.hash.slice(0, 8)}`
+for (const [index, record] of records.entries()) {
+  const slug = `schwing-pump-part-${String(index + 1).padStart(2, '0')}-${record.hash.slice(0, 8)}`
   const outputFilename = `${slug}.webp`
-  const sourcePath = path.join(sourceDir, canonical.file)
+  const sourcePath = path.join(sourceDir, record.file)
   const outputPath = path.join(outputDir, outputFilename)
 
   await sharp(sourcePath)
@@ -63,30 +62,31 @@ for (const [index, group] of uniqueGroups.entries()) {
     .webp({ quality: 84, effort: 5 })
     .toFile(outputPath)
 
-  const title = normalizeTitle(canonical.file)
-  const isSchwing = /شيفينج/.test(title)
+  const title = normalizeTitle(record.file)
   products.push({
     id: `catalog-${String(index + 1).padStart(2, '0')}`,
     slug,
     name: title,
     categorySlug: 'concrete-pump-parts',
-    brandSlug: isSchwing ? 'schwing' : null,
+    brandSlug: 'schwing',
     featured: index < 6,
     image: `/images/products/catalog/${outputFilename}`,
-    sourceFile: canonical.file,
-    sourceAliases: group.map(({ file }) => file),
-    sourceHash: canonical.hash,
-    sourceWidth: canonical.width,
-    sourceHeight: canonical.height,
+    sourceFile: record.file,
+    sourceAliases: [record.file],
+    sourceHash: record.hash,
+    sourceWidth: record.width,
+    sourceHeight: record.height,
   })
 }
 
 const manifest = {
-  generatedAt: new Date().toISOString(),
   sourceDir: 'A:/Downloads/firdous-media',
   totalSourceFiles: records.length,
-  uniqueVisualAssets: products.length,
-  duplicateSourceGroups: uniqueGroups.filter((group) => group.length > 1).map((group) => group.map(({ file }) => file)),
+  catalogRecords: products.length,
+  uniqueVisualAssets: groups.size,
+  duplicateSourceGroups: [...groups.values()]
+    .filter((group) => group.length > 1)
+    .map((group) => group.map(({ file }) => file)),
   products,
 }
 
@@ -105,14 +105,15 @@ const duplicateRows = manifest.duplicateSourceGroups
 
 await fs.writeFile(
   path.join(docsDir, 'product-media-inventory.md'),
-  `# Product media inventory\n\n- Source folder: \`${manifest.sourceDir}\`\n- Source files processed: ${manifest.totalSourceFiles}\n- Unique visual assets published: ${manifest.uniqueVisualAssets}\n- Category mapping: all supplied media is mapped to \`concrete-pump-parts\` because the supplied inventory is concrete-pump spare-part media.\n- Brand mapping: only filenames that explicitly include \`شيفينج\` are mapped to the supported-brand record \`Schwing\`; other names remain unbranded to avoid an unsupported claim.\n- Exact duplicate files are retained in the source alias list and published once.\n\n## Exact duplicate source groups\n\n${duplicateRows}\n\n## Published catalog mapping\n\n| # | Product name | Stable slug | Source file(s) | Published image |\n| ---: | --- | --- | --- | --- |\n${rows}\n`,
+  `# Product media inventory\n\n- Source folder: \`${manifest.sourceDir}\`\n- Source files processed: ${manifest.totalSourceFiles}\n- Catalog records published: ${manifest.catalogRecords}\n- Unique visual hashes (diagnostic only): ${manifest.uniqueVisualAssets}\n- Category mapping: all supplied media is mapped to \`concrete-pump-parts\` because the supplied inventory is concrete-pump spare-part media.\n- Brand mapping: all supplied records are mapped to the confirmed supported-brand record \`Schwing\`, per the production catalog brief.\n- Every source file is a distinct product record, including files with identical hashes. No source files are merged.\n\n## Exact duplicate source groups (retained as separate records)\n\n${duplicateRows}\n\n## Published catalog mapping\n\n| # | Product name | Stable slug | Source file | Published image |\n| ---: | --- | --- | --- | --- |\n${rows}\n`,
 )
 
 console.log(
   JSON.stringify(
     {
       totalSourceFiles: records.length,
-      uniqueVisualAssets: products.length,
+      catalogRecords: products.length,
+      uniqueVisualAssets: groups.size,
       outputDir,
       manifest: path.join(dataDir, 'product-catalog.json'),
     },

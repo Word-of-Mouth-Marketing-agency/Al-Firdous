@@ -79,6 +79,7 @@ Payload includes these collections:
 - `users`: authenticated CMS administrators
 - `media`: development-local image uploads under `media/`; the collection is ready to move to an object-storage adapter later
 - `products`: catalog records with no price field, category/brand relationships, specifications, compatibility, images, availability, and SEO fields
+- `inquiries`: public contact-form submissions with name, phone, subject, message, source, optional related product, and workflow status
 - `product-categories`: the four approved category records can be created by an administrator without seeded fake content
 - `brands`: supports Zoomlion, Schwing, and Putzmeister records without claiming authorized-dealer status
 
@@ -114,4 +115,4 @@ The foundation also includes:
 
 Payload remains the production content source. When the local database is unavailable or does not yet contain catalog products, the public frontend falls back to the committed, client-supplied media manifest so the site remains reviewable without inventing prices, technical specifications, compatibility, certifications, addresses, or partnership claims. The fallback never replaces the Payload architecture.
 
-The 57 supplied media files contain 50 unique visual assets after seven exact duplicate pairs are merged. All are mapped to the concrete-pump-parts category; only filenames that explicitly include `شيفينج` receive the `Schwing` brand filter, avoiding an unsupported manufacturer claim for other names.
+The 57 supplied media files are published as 57 distinct catalog records. Seven exact visual-duplicate pairs are documented as a diagnostic, but are intentionally not merged because each source file represents a separate supplied product record. All records map to the `concrete-pump-parts` category and the confirmed `Schwing` brand filter.
