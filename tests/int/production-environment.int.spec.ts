@@ -53,4 +53,13 @@ describe('production environment validation', () => {
       }),
     ).toThrow('DATABASE_URL')
   })
+
+  it('does not require VPS credentials for the explicit Vercel client preview', () => {
+    expect(() =>
+      validateProductionEnvironment({
+        NODE_ENV: 'production',
+        VERCEL_CLIENT_PREVIEW: 'true',
+      }),
+    ).not.toThrow()
+  })
 })

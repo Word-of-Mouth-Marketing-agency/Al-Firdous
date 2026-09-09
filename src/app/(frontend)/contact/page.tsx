@@ -7,6 +7,7 @@ import { PageTitle } from '@/components/site/PageTitle'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { getHomepageData } from '@/lib/homepage-data'
 import { createPageMetadata } from '@/lib/seo'
+import { isVercelClientPreview } from '@/lib/preview-mode'
 import { toWhatsAppUrl } from '@/lib/whatsapp'
 
 export const metadata: Metadata = createPageMetadata({
@@ -54,7 +55,7 @@ export default async function ContactPage() {
               </nav>
             </div>
             <div className="contact-page-side">
-              <InquiryForm />
+              <InquiryForm clientPreview={isVercelClientPreview()} whatsappUrl={siteSettings.whatsappUrl} />
             </div>
             <div className="contact-people-card">
               <div className="contact-people-card__heading">

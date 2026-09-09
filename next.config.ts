@@ -21,7 +21,7 @@ const productionContentSecurityPolicy = [
 ].join('; ')
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  ...(process.env.VERCEL === '1' ? {} : { output: 'standalone' as const }),
   poweredByHeader: false,
   reactStrictMode: true,
   images: {

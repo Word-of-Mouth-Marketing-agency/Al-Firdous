@@ -62,6 +62,7 @@ This writes optimized WebP files to `public/images/products/catalog`, a committe
 | `PORT` | Production | Port exposed by the standalone Node server |
 | `HOSTNAME` | Production | Bind hostname for the standalone Node server |
 | `TRUST_PROXY` | Optional | Set to `true` only when the reverse proxy is trusted to provide `X-Forwarded-For` for inquiry rate limiting |
+| `VERCEL_CLIENT_PREVIEW` | Vercel preview only | Set to `true` for the temporary read-only client review deployment; it uses committed catalog fallback content and requires no Payload database |
 
 `.env` and local database credentials are ignored by Git. Never commit them.
 
@@ -119,6 +120,12 @@ The foundation also includes:
 - No production database, VPS, DNS, SSL, reverse proxy, port, or other application was changed in this pass.
 - The local `./media` default is for development; production must set `PAYLOAD_MEDIA_DIR` to persistent storage outside the release directory. An approved object-storage adapter can be introduced later if required.
 - The application is designed as one lightweight Next.js/Payload runtime without Redis, worker processes, or microservices.
+
+## Vercel client preview
+
+The temporary Vercel deployment is a read-only client review environment, not a replacement for the VPS production runtime. In Vercel Project Settings set `VERCEL_CLIENT_PREVIEW=true`; no `DATABASE_URL`, `PAYLOAD_SECRET`, or `PAYLOAD_MEDIA_DIR` is required there. The preview uses the committed 57-product catalog and media, disables Payload admin access, does not persist inquiry-form submissions, keeps WhatsApp links active, and sends `noindex, nofollow` metadata with a blocked `robots.txt` policy. Vercel supplies `VERCEL_URL`, which is used for canonical and Open Graph URLs.
+
+Use `npm run build` as the Vercel Build Command. Do not configure `npm run build:standalone` or `node .next/standalone/server.js` in Vercel. The self-hosted VPS continues to use `npm run build:standalone` and `npm run start` with the strict production environment below.
 
 ## Content and fallback boundary
 

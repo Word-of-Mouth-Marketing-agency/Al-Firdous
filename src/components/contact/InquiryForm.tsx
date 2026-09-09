@@ -5,7 +5,13 @@ import { useActionState } from 'react'
 import { submitInquiry } from '@/app/(frontend)/contact/actions'
 import { initialInquiryState } from '@/lib/inquiry-form-state'
 
-export function InquiryForm() {
+export function InquiryForm({
+  clientPreview = false,
+  whatsappUrl,
+}: {
+  clientPreview?: boolean
+  whatsappUrl?: string | null
+}) {
   const [state, formAction, isPending] = useActionState(submitInquiry, initialInquiryState)
 
   return (
@@ -15,6 +21,13 @@ export function InquiryForm() {
         <h2>أرسل تفاصيل طلبك</h2>
         <p>اكتب بياناتك وسنساعدك في الوصول إلى القطعة المناسبة.</p>
       </div>
+
+      {clientPreview ? (
+        <div className="contact-form__preview-note" role="note">
+          <p>هذه نسخة معاينة للموقع. للتواصل يرجى استخدام واتساب.</p>
+          {whatsappUrl ? <a href={whatsappUrl}>تواصل عبر واتساب</a> : null}
+        </div>
+      ) : null}
 
       {state.status === 'success' ? <p className="contact-form__success" role="status" aria-live="polite">{state.message}</p> : null}
       {state.status === 'error' ? <p className="contact-form__error" role="alert">{state.message}</p> : null}
@@ -44,10 +57,10 @@ export function InquiryForm() {
           <input name="website" tabIndex={-1} autoComplete="off" />
         </label>
         <div className="contact-form__actions">
-          <button type="submit" className="button button--primary" disabled={isPending}>
-            {isPending ? 'جارٍ الإرسال...' : 'إرسال الاستفسار'}
+          <button type="submit" className="button button--primary" disabled={isPending || clientPreview}>
+            {clientPreview ? 'متاح عبر واتساب فقط' : isPending ? 'جارٍ الإرسال...' : 'إرسال الاستفسار'}
           </button>
-          <p>لن يتم عرض بياناتك على الموقع.</p>
+          <p>{clientPreview ? 'هذه النسخة لا تحفظ الاستفسارات في قاعدة البيانات.' : 'لن يتم عرض بياناتك على الموقع.'}</p>
         </div>
       </form>
     </div>

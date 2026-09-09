@@ -1,10 +1,16 @@
+import { isVercelClientPreview } from '@/lib/preview-mode'
+
 const PRODUCTION_BUILD_PHASE = 'phase-production-build'
 const PLACEHOLDER_VALUE = /^(replace-with|change-me|your-|<)/i
 
 type Environment = NodeJS.ProcessEnv
 
 export function isProductionRuntime(environment: Environment = process.env) {
-  return environment.NODE_ENV === 'production' && environment.NEXT_PHASE !== PRODUCTION_BUILD_PHASE
+  return (
+    environment.NODE_ENV === 'production' &&
+    environment.NEXT_PHASE !== PRODUCTION_BUILD_PHASE &&
+    !isVercelClientPreview(environment)
+  )
 }
 
 function isMissing(value: string | undefined) {

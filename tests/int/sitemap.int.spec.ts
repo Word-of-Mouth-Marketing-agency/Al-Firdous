@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { findMock, getPayloadMock } = vi.hoisted(() => ({
   findMock: vi.fn(),
@@ -12,10 +12,18 @@ vi.mock('@/lib/async-utils', () => ({ withTimeout: (promise: Promise<unknown>) =
 import sitemap from '@/app/(frontend)/sitemap'
 
 describe('live CMS sitemap', () => {
+  const originalVercelUrl = process.env.VERCEL_URL
+
   beforeEach(() => {
     delete process.env.HOMEPAGE_PREVIEW_CONTENT
+    delete process.env.VERCEL_CLIENT_PREVIEW
     findMock.mockReset()
     getPayloadMock.mockResolvedValue({ find: findMock })
+  })
+
+  afterEach(() => {
+    if (originalVercelUrl === undefined) delete process.env.VERCEL_URL
+    else process.env.VERCEL_URL = originalVercelUrl
   })
 
   it('includes active CMS product URLs once without query or admin paths', async () => {
@@ -38,5 +46,16 @@ describe('live CMS sitemap', () => {
     expect(findMock).toHaveBeenCalledWith(
       expect.objectContaining({ where: { active: { equals: true } } }),
     )
+  })
+
+  it('uses the committed catalog for the Vercel client preview without Payload', async () => {
+    process.env.VERCEL_CLIENT_PREVIEW = 'true'
+    process.env.VERCEL_URL = 'al-firdous-test.vercel.app'
+
+    const entries = await sitemap()
+
+    expect(entries.filter((entry) => entry.url.includes('/products/'))).toHaveLength(57)
+    expect(findMock).not.toHaveBeenCalled()
+    expect(entries.every((entry) => entry.url.startsWith('https://al-firdous-test.vercel.app/'))).toBe(true)
   })
 })

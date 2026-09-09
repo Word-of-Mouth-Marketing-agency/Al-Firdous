@@ -6,7 +6,7 @@ import { createInquiry } from '@/lib/inquiry-storage'
 import type { InquiryState } from '@/lib/inquiry-form-state'
 import { checkInquiryRateLimit, getInquiryClientKey } from '@/lib/inquiry-rate-limit'
 import { validateInquiry } from '@/lib/inquiry-validation'
-import { isPreviewMode } from '@/lib/preview-mode'
+import { isPreviewMode, isVercelClientPreview } from '@/lib/preview-mode'
 
 export async function submitInquiry(_previousState: InquiryState, formData: FormData): Promise<InquiryState> {
   const validation = validateInquiry(formData)
@@ -18,7 +18,9 @@ export async function submitInquiry(_previousState: InquiryState, formData: Form
   if (isPreviewMode()) {
     return {
       status: 'error',
-      message: 'المعاينة المحلية لا تحفظ الاستفسارات. تواصل معنا عبر واتساب أو الهاتف.',
+      message: isVercelClientPreview()
+        ? 'هذه نسخة معاينة للموقع. للتواصل يرجى استخدام واتساب.'
+        : 'المعاينة المحلية لا تحفظ الاستفسارات. تواصل معنا عبر واتساب أو الهاتف.',
       values: validation.values,
     }
   }
