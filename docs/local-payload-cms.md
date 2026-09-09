@@ -17,11 +17,14 @@ The `.local` directory is ignored by Git. Do not commit its data or logs.
 From PowerShell in the repository:
 
 ```powershell
-& 'A:\Programs\code\postgresql\bin\pg_ctl.exe' -D (Resolve-Path '.local\postgres').Path -o '"-p 55432"' -l (Join-Path (Resolve-Path '.local\postgres').Path 'server.log') start
-& 'A:\Programs\code\postgresql\bin\pg_ctl.exe' -D (Resolve-Path '.local\postgres').Path stop
+npm run db:start
+npm run db:status
+npm run db:stop
 ```
 
 The cluster was initialized once with `initdb` and a dedicated local role/database. Do not run a reset or fresh migration against another PostgreSQL instance.
+
+The scripts operate only on this project's `.local\postgres` data directory and port `55432`. They identify the expected database and PostgreSQL data directory before stopping anything, so they do not stop a system PostgreSQL service or another project's database.
 
 ## Environment
 
@@ -44,6 +47,14 @@ Start the normal CMS-backed app with:
 ```text
 npm run dev
 ```
+
+For the convenient daily workflow, use:
+
+```text
+npm run dev:cms
+```
+
+`dev:cms` checks the isolated local PostgreSQL cluster, starts it when needed, and then runs the normal CMS-backed Next.js development server. It does not stop the database when the dev server exits.
 
 Open `/admin`. On a new database Payload shows its first-user form. Create the administrator manually with credentials chosen by the operator; this repository does not contain or generate admin credentials. After that, `/admin` shows the authenticated dashboard.
 
@@ -89,6 +100,7 @@ The verification checks 57 unique products, four categories, three brands, produ
 ## Preview versus normal mode
 
 - `npm run dev` uses real Payload/PostgreSQL content and is the mode for CMS/admin testing.
+- `npm run dev:cms` starts the isolated local PostgreSQL cluster if needed, then runs the same real CMS/PostgreSQL development mode.
 - `npm run dev:preview` sets `HOMEPAGE_PREVIEW_CONTENT=true` and intentionally uses the committed fallback catalog/media so public pages remain reviewable when CMS content is unavailable.
 
 Do not treat preview output as proof that the local CMS is connected. Use the normal server and `npm run verify:local-cms` for CMS verification.

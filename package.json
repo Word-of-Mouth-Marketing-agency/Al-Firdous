@@ -7,6 +7,7 @@
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build --webpack",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev:cms": "node scripts/dev-cms.mjs",
     "dev:preview": "cross-env NODE_OPTIONS=--no-deprecation HOMEPAGE_PREVIEW_CONTENT=true next dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
@@ -16,6 +17,9 @@
     "import:catalog": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/import-product-catalog.ts",
     "seed:local-cms": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-local-site-settings.ts",
     "verify:local-cms": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/verify-local-cms.ts",
+    "db:start": "node scripts/local-postgres.mjs start",
+    "db:stop": "node scripts/local-postgres.mjs stop",
+    "db:status": "node scripts/local-postgres.mjs status",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
