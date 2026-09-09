@@ -12,12 +12,22 @@ import { ProductCategories } from './collections/ProductCategories'
 import { Products } from './collections/Products'
 import { Inquiries } from './collections/Inquiries'
 import { SiteSettings } from './globals/SiteSettings'
+import { guardPostgresInitialization } from './lib/payload-initialization'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const publicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL
 const allowedOrigins = publicSiteUrl ? [publicSiteUrl] : []
+
+const database = guardPostgresInitialization(
+  postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL || '',
+      connectionTimeoutMillis: 3000,
+    },
+  }),
+)
 
 export default buildConfig({
   admin: {
@@ -36,12 +46,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL || '',
-      connectionTimeoutMillis: 3000,
-    },
-  }),
+  db: database,
   sharp,
   plugins: [],
 })

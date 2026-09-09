@@ -5,6 +5,21 @@ const primaryWhatsAppNumber = '201031080031'
 const generalWhatsAppMessage = 'مرحباً، أريد الاستفسار عن منتجات الفردوس.'
 
 test.describe('page title and WhatsApp refinements', () => {
+  test('preview routes load without runtime page errors', async ({ page }) => {
+    const runtimeErrors: string[] = []
+    page.on('pageerror', (error) => runtimeErrors.push(error.message))
+    page.on('console', (message) => {
+      if (message.type() === 'error') runtimeErrors.push(message.text())
+    })
+
+    for (const path of ['/', '/about', '/products', '/contact', productDetailPath]) {
+      const response = await page.goto(path)
+      expect(response?.status()).toBe(200)
+    }
+
+    expect(runtimeErrors.join('\n')).not.toMatch(/unhandledRejection|undefined/)
+  })
+
   test('uses compact blue title bands on public inner pages', async ({ page }) => {
     const pages = [
       { path: '/about', title: 'من نحن' },

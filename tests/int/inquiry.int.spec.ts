@@ -58,4 +58,20 @@ describe('contact inquiry submission', () => {
     expect(result.message).toContain('رقم هاتف مصري')
     expect(createInquiryMock).not.toHaveBeenCalled()
   })
+
+  it('does not claim or attempt to save inquiries in preview mode', async () => {
+    const original = process.env.HOMEPAGE_PREVIEW_CONTENT
+    process.env.HOMEPAGE_PREVIEW_CONTENT = 'true'
+
+    try {
+      const result = await submitInquiry(initialInquiryState, validForm())
+
+      expect(result.status).toBe('error')
+      expect(result.message).toContain('المعاينة المحلية')
+      expect(createInquiryMock).not.toHaveBeenCalled()
+    } finally {
+      if (original === undefined) delete process.env.HOMEPAGE_PREVIEW_CONTENT
+      else process.env.HOMEPAGE_PREVIEW_CONTENT = original
+    }
+  })
 })

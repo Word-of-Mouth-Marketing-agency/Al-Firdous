@@ -39,6 +39,6 @@ test.describe('catalog and public information pages', () => {
     await form.locator('textarea[name="message"]').fill('أحتاج الاستفسار عن قطعة غيار')
     await form.getByRole('button', { name: 'إرسال الاستفسار' }).click()
     await expect(page.getByRole('alert')).toBeVisible()
-    await expect(page.locator('.contact-form__error')).toContainText('تعذر حفظ الاستفسار')
+    await expect(page.locator('.contact-form__error')).toContainText('المعاينة المحلية')
   })
 })

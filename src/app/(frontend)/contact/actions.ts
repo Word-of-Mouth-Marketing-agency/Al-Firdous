@@ -3,12 +3,21 @@
 import { createInquiry } from '@/lib/inquiry-storage'
 import type { InquiryState } from '@/lib/inquiry-form-state'
 import { validateInquiry } from '@/lib/inquiry-validation'
+import { isPreviewMode } from '@/lib/preview-mode'
 
 export async function submitInquiry(_previousState: InquiryState, formData: FormData): Promise<InquiryState> {
   const validation = validateInquiry(formData)
 
   if (!validation.ok) {
     return { status: 'error', message: validation.message, values: validation.values }
+  }
+
+  if (isPreviewMode()) {
+    return {
+      status: 'error',
+      message: 'المعاينة المحلية لا تحفظ الاستفسارات. تواصل معنا عبر واتساب أو الهاتف.',
+      values: validation.values,
+    }
   }
 
   try {

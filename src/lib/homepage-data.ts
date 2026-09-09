@@ -1,8 +1,11 @@
 import { getPayload } from 'payload'
 
 import config from '@payload-config'
+import { withTimeout } from '@/lib/async-utils'
 import type { Brand, Media, Product, ProductCategory, SiteSetting } from '@/payload-types'
 import { PRIMARY_WHATSAPP_PHONE, toWhatsAppUrl } from '@/lib/whatsapp'
+import { createServerDataError } from '@/lib/server-errors'
+import { isPreviewMode } from '@/lib/preview-mode'
 import {
   confirmedCategoryDefaults,
   confirmedPumpBrands,
@@ -91,21 +94,6 @@ const fallbackSiteSettings: HomepageSiteSettings = {
     instagram: 'https://www.instagram.com/alfir_dous17?igsh=MXNxeTNrZmozNHI5bA=',
     tiktok: 'https://www.tiktok.com/@al_fairdous?_r=1&_t=ZS-98zWmAeqMKu',
   },
-}
-
-async function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T | null> {
-  let timeoutId: ReturnType<typeof setTimeout> | undefined
-  const guardedPromise = promise.catch(() => null)
-
-  const timeout = new Promise<null>((resolve) => {
-    timeoutId = setTimeout(() => resolve(null), timeoutMs)
-  })
-
-  try {
-    return await Promise.race([guardedPromise, timeout])
-  } finally {
-    if (timeoutId) clearTimeout(timeoutId)
-  }
 }
 
 function isMedia(value: number | Media | null | undefined): value is Media {
@@ -198,7 +186,7 @@ function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
 }
 
 export async function getSiteSettings(): Promise<HomepageSiteSettings> {
-  if (process.env.HOMEPAGE_PREVIEW_CONTENT === 'true') return fallbackSiteSettings
+  if (isPreviewMode()) return fallbackSiteSettings
 
   try {
     const payload = await withTimeout(getPayload({ config }), 2500)
@@ -206,8 +194,8 @@ export async function getSiteSettings(): Promise<HomepageSiteSettings> {
 
     const settings = await withTimeout(payload.findGlobal({ slug: 'site-settings', depth: 1 }), 2500)
     return mapSiteSettings(settings)
-  } catch {
-    return fallbackSiteSettings
+  } catch (error) {
+    throw createServerDataError('Failed to load site settings', error)
   }
 }
 
@@ -228,7 +216,7 @@ function buildFallbackHomepageData(): HomepageData {
 }
 
 export async function getHomepageData(): Promise<HomepageData> {
-  if (process.env.HOMEPAGE_PREVIEW_CONTENT === 'true') {
+  if (isPreviewMode()) {
     return buildFallbackHomepageData()
   }
 
@@ -294,7 +282,7 @@ export async function getHomepageData(): Promise<HomepageData> {
       siteSettings: mapSiteSettings(siteSettings as SiteSetting),
       contentSource: 'cms',
     }
-  } catch {
-    return buildFallbackHomepageData()
+  } catch (error) {
+    throw createServerDataError('Failed to load homepage data', error)
   }
 }

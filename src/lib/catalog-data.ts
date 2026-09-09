@@ -2,12 +2,15 @@ import { getPayload } from 'payload'
 import type { Where } from 'payload'
 
 import config from '@payload-config'
+import { withTimeout } from '@/lib/async-utils'
 import type { Brand, Media, Product, ProductCategory } from '@/payload-types'
 import {
   fallbackCatalogBrands,
   fallbackCatalogCategories,
   fallbackCatalogProducts,
 } from '@/lib/product-catalog'
+import { isPreviewMode } from '@/lib/preview-mode'
+import { createServerDataError } from '@/lib/server-errors'
 
 export type CatalogCategory = {
   id: number | string
@@ -72,20 +75,6 @@ const defaultBrands: CatalogBrand[] = fallbackCatalogBrands.map((brand) => ({
   name: brand.name,
   slug: brand.slug,
 }))
-
-async function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T | null> {
-  let timeoutId: ReturnType<typeof setTimeout> | undefined
-  const guardedPromise = promise.catch(() => null)
-  const timeout = new Promise<null>((resolve) => {
-    timeoutId = setTimeout(() => resolve(null), timeoutMs)
-  })
-
-  try {
-    return await Promise.race([guardedPromise, timeout])
-  } finally {
-    if (timeoutId) clearTimeout(timeoutId)
-  }
-}
 
 function isMedia(value: number | Media | null | undefined): value is Media {
   return typeof value === 'object' && value !== null && 'id' in value
@@ -193,7 +182,7 @@ function buildFallbackCatalog(query: CatalogQuery): CatalogResult {
 }
 
 export async function getCatalogData(query: CatalogQuery = {}): Promise<CatalogResult> {
-  if (process.env.HOMEPAGE_PREVIEW_CONTENT === 'true') return buildFallbackCatalog(query)
+  if (isPreviewMode()) return buildFallbackCatalog(query)
 
   try {
     const payload = await withTimeout(getPayload({ config }), 2500)
@@ -243,14 +232,14 @@ export async function getCatalogData(query: CatalogQuery = {}): Promise<CatalogR
       brand: query.brand?.trim() ?? '',
       contentSource: 'cms',
     }
-  } catch {
-    return buildFallbackCatalog(query)
+  } catch (error) {
+    throw createServerDataError('Failed to load catalog data', error)
   }
 }
 
 export async function getCatalogProductBySlug(slug: string): Promise<CatalogProduct | null> {
   const fallback = fallbackCatalogProducts.find((product) => product.slug === slug)
-  if (process.env.HOMEPAGE_PREVIEW_CONTENT === 'true') return fallback ? fallbackProductToCatalog(fallback) : null
+  if (isPreviewMode()) return fallback ? fallbackProductToCatalog(fallback) : null
 
   try {
     const payload = await withTimeout(getPayload({ config }), 2500)
@@ -262,8 +251,8 @@ export async function getCatalogProductBySlug(slug: string): Promise<CatalogProd
       const product = result?.docs ? mapProduct(result.docs[0] as Product) : null
       if (product) return product
     }
-  } catch {
-    // The committed local manifest remains available when Payload is unavailable.
+  } catch (error) {
+    throw createServerDataError(`Failed to load product "${slug}"`, error)
   }
 
   return fallback ? fallbackProductToCatalog(fallback) : null
