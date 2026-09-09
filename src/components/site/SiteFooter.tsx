@@ -18,12 +18,30 @@ export function SiteFooter({ settings }: SiteFooterProps) {
 
   return (
     <footer className="site-footer">
-      <div className="site-container site-footer__grid">
-        <div className="site-footer__brand">
+      <div className="site-container site-footer__main">
+        <section className="site-footer__brand" aria-label="عن الفردوس">
           <BrandLogo inverted />
-          <div className="site-footer__contact" aria-label="بيانات التواصل">
+          <p className="site-footer__description">
+            شركة الفردوس متخصصة في توفير قطع غيار مضخات وخلاطات ومحطات الخرسانة بجودة عالية وسرعة في التوصيل.
+          </p>
+        </section>
+
+        <nav className="site-footer__links" aria-label="روابط التذييل">
+          <h2>روابط سريعة</h2>
+          <ul>
+            {mainNavigation.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href}>{item.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <section className="site-footer__contact" aria-labelledby="footer-contact-title">
+          <h2 id="footer-contact-title">تواصل معنا</h2>
+          <div className="site-footer__contact-list">
             {settings.address ? (
-              <p>
+              <p className="site-footer__contact-item">
                 <MapPin aria-hidden="true" weight="bold" />
                 <span>
                   <strong>العنوان</strong>
@@ -32,7 +50,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
               </p>
             ) : null}
             {settings.primaryPhone && settings.whatsappUrl ? (
-              <a href={settings.whatsappUrl} className="site-footer__whatsapp" aria-label="التواصل عبر واتساب">
+              <a href={settings.whatsappUrl} className="site-footer__contact-item site-footer__whatsapp" aria-label="التواصل عبر واتساب">
                 <WhatsappLogo aria-hidden="true" weight="fill" />
                 <span>
                   <strong>واتساب</strong>
@@ -41,21 +59,13 @@ export function SiteFooter({ settings }: SiteFooterProps) {
               </a>
             ) : null}
           </div>
-        </div>
+        </section>
+      </div>
 
-        <div className="site-footer__links">
-          <h2>روابط سريعة</h2>
-          <nav aria-label="روابط التذييل">
-            {mainNavigation.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div className="site-footer__socials">
-          <h2>تابعونا على</h2>
+      <div className="site-container site-footer__bottom">
+        <p className="site-footer__copyright">جميع الحقوق محفوظة © الفردوس</p>
+        <nav className="site-footer__social-nav" aria-label="التواصل الاجتماعي">
+          <span className="site-footer__social-label">تابعونا على</span>
           <div className="site-footer__social-list">
             {socialLinks.map((social) => {
               const Icon = social.icon
@@ -72,8 +82,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
               )
             })}
           </div>
-          <p>جميع الحقوق محفوظة © الفردوس 2026</p>
-        </div>
+        </nav>
       </div>
     </footer>
   )
