@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
+import { normalizeMediaUrl } from '@/lib/media-url'
+
 type GalleryImage = { src: string; alt: string }
 
 export function ProductGallery({ images }: { images: GalleryImage[] }) {
@@ -16,7 +18,7 @@ export function ProductGallery({ images }: { images: GalleryImage[] }) {
   return (
     <div className="product-detail-gallery">
       <div className="product-detail-gallery__main">
-        <Image src={active.src} alt={active.alt} fill sizes="(min-width: 900px) 52vw, 92vw" priority={selected === 0} className="object-contain" />
+        <Image src={normalizeMediaUrl(active.src) || active.src} alt={active.alt} fill sizes="(min-width: 900px) 52vw, 92vw" priority={selected === 0} className="object-contain" />
       </div>
       {images.length > 1 ? (
         <div className="product-detail-gallery__thumbs" aria-label="صور المنتج">
@@ -29,7 +31,7 @@ export function ProductGallery({ images }: { images: GalleryImage[] }) {
               aria-pressed={index === selected}
               onClick={() => setSelected(index)}
             >
-              <Image src={image.src} alt="" fill sizes="80px" className="object-contain" />
+              <Image src={normalizeMediaUrl(image.src) || image.src} alt="" fill sizes="80px" className="object-contain" />
             </button>
           ))}
         </div>

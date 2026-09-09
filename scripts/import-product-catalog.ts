@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import 'dotenv/config'
 import { getPayload } from 'payload'
 import sharp from 'sharp'
 
@@ -91,3 +92,6 @@ for (const [index, product] of manifest.products.entries()) {
 }
 
 console.log(`Imported ${manifest.products.length} catalog products and ${categorySeeds.length} categories.`)
+
+await payload.db.destroy?.()
+process.exit(0)

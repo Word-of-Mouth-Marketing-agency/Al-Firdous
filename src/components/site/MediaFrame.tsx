@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import type { Media } from '@/payload-types'
+import { normalizeMediaUrl } from '@/lib/media-url'
 
 type MediaFrameProps = {
   media?: Media | null
@@ -21,7 +22,7 @@ export function MediaFrame({
   sizes = '100vw',
   objectPosition,
 }: MediaFrameProps) {
-  const src = media?.url || fallbackSrc
+  const src = normalizeMediaUrl(media?.url || fallbackSrc)
 
   if (src) {
     return (
