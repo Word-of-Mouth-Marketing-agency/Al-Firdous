@@ -1,7 +1,10 @@
 'use server'
 
+import { headers } from 'next/headers'
+
 import { createInquiry } from '@/lib/inquiry-storage'
 import type { InquiryState } from '@/lib/inquiry-form-state'
+import { checkInquiryRateLimit, getInquiryClientKey } from '@/lib/inquiry-rate-limit'
 import { validateInquiry } from '@/lib/inquiry-validation'
 import { isPreviewMode } from '@/lib/preview-mode'
 
@@ -16,6 +19,15 @@ export async function submitInquiry(_previousState: InquiryState, formData: Form
     return {
       status: 'error',
       message: 'المعاينة المحلية لا تحفظ الاستفسارات. تواصل معنا عبر واتساب أو الهاتف.',
+      values: validation.values,
+    }
+  }
+
+  const requestHeaders = await headers()
+  if (!checkInquiryRateLimit(getInquiryClientKey(requestHeaders))) {
+    return {
+      status: 'error',
+      message: 'تم إرسال عدد كبير من الطلبات. يرجى المحاولة مرة أخرى بعد قليل.',
       values: validation.values,
     }
   }

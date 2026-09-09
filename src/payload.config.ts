@@ -13,9 +13,12 @@ import { Products } from './collections/Products'
 import { Inquiries } from './collections/Inquiries'
 import { SiteSettings } from './globals/SiteSettings'
 import { guardPostgresInitialization } from './lib/payload-initialization'
+import { validateProductionEnvironment } from './lib/production-environment'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+validateProductionEnvironment()
 
 const publicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL
 const allowedOrigins = publicSiteUrl ? [publicSiteUrl] : []
@@ -26,6 +29,7 @@ const database = guardPostgresInitialization(
       connectionString: process.env.DATABASE_URL || '',
       connectionTimeoutMillis: 3000,
     },
+    migrationDir: path.resolve(dirname, 'migrations'),
   }),
 )
 

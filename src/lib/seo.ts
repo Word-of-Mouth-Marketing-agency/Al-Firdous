@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import { isProductionRuntime } from '@/lib/production-environment'
+
 const fallbackSiteUrl = 'http://localhost:3000'
 const companyName = 'الفردوس'
 const defaultDescription = 'شركة الفردوس متخصصة في توفير قطع غيار المضخات وخلاطات ومحطات الخرسانة.'
@@ -7,9 +9,23 @@ const defaultDescription = 'شركة الفردوس متخصصة في توفير
 export function getSiteUrl(): URL {
   const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim()
 
+  if (isProductionRuntime() && !configuredUrl) {
+    throw new Error('NEXT_PUBLIC_SITE_URL is required in production')
+  }
+
   try {
-    return new URL(configuredUrl || fallbackSiteUrl)
+    const siteUrl = new URL(configuredUrl || fallbackSiteUrl)
+    if (
+      isProductionRuntime() &&
+      (siteUrl.protocol !== 'https:' || ['localhost', '127.0.0.1', '::1'].includes(siteUrl.hostname.toLowerCase()))
+    ) {
+      throw new Error('NEXT_PUBLIC_SITE_URL must use HTTPS and a non-local hostname in production')
+    }
+    return siteUrl
   } catch {
+    if (isProductionRuntime()) {
+      throw new Error('NEXT_PUBLIC_SITE_URL must be a valid URL in production')
+    }
     return new URL(fallbackSiteUrl)
   }
 }

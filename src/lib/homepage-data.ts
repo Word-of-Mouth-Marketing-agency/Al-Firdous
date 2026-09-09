@@ -284,16 +284,7 @@ export async function getHomepageData(): Promise<HomepageData> {
         categoryResult.docs as ProductCategory[],
         pumpBrands,
       ),
-      featuredProducts: cmsProducts.length
-        ? cmsProducts.map(mapProduct)
-        : fallbackCatalogProducts.slice(0, 6).map((product) => ({
-            id: product.id,
-            name: product.name,
-            slug: product.slug,
-            partNumber: null,
-            image: null,
-            fallbackImageSrc: product.image,
-          })),
+      featuredProducts: cmsProducts.map(mapProduct),
       siteSettings: mapSiteSettings(siteSettings as SiteSetting),
       contentSource: 'cms',
     }

@@ -117,7 +117,7 @@ export function MobileDrawer({ activePath, phoneHref }: MobileDrawerProps) {
           </button>
         </div>
 
-        <h2 id="mobile-navigation-title" className="visually-hidden">القائمة الرئيسية</h2>
+        <span id="mobile-navigation-title" className="visually-hidden">القائمة الرئيسية</span>
 
         <nav className="mobile-drawer__nav" aria-label="التنقل الرئيسي">
           {mainNavigation.map((item) => (

@@ -213,8 +213,6 @@ export async function getCatalogData(query: CatalogQuery = {}): Promise<CatalogR
     if (!result) throw new Error('Catalog query timed out')
     const [productsResult, categoriesResult, brandsResult] = result
     const products = (productsResult.docs as Product[]).map(mapProduct).filter((product): product is CatalogProduct => Boolean(product))
-    if (!products.length && !query.query && !query.category && !query.brand) return buildFallbackCatalog(query)
-
     return {
       products,
       categories: (categoriesResult.docs as ProductCategory[]).map(mapCategory).length
@@ -248,12 +246,12 @@ export async function getCatalogProductBySlug(slug: string): Promise<CatalogProd
         payload.find({ collection: 'products', depth: 1, limit: 1, where: { and: [{ slug: { equals: slug } }, { active: { equals: true } }] } }),
         3000,
       )
-      const product = result?.docs ? mapProduct(result.docs[0] as Product) : null
+      const product = result?.docs?.[0] ? mapProduct(result.docs[0] as Product) : null
       if (product) return product
     }
   } catch (error) {
     throw createServerDataError(`Failed to load product "${slug}"`, error)
   }
 
-  return fallback ? fallbackProductToCatalog(fallback) : null
+  return null
 }

@@ -5,6 +5,20 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
+const productionContentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "object-src 'none'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "connect-src 'self'",
+  "worker-src 'self' blob:",
+  "frame-src 'self'",
+].join('; ')
 
 const nextConfig: NextConfig = {
   output: 'standalone',
@@ -44,6 +58,9 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
+          ...(process.env.NODE_ENV === 'production'
+            ? [{ key: 'Content-Security-Policy', value: productionContentSecurityPolicy }]
+            : []),
         ],
       },
     ]

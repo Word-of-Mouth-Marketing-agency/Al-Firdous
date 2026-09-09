@@ -40,7 +40,7 @@ Never commit `.env`, passwords, Payload secrets, database files, logs, or admini
 
 ## Schema and first administrator
 
-This repository has no checked-in `src/migrations` directory. Payload’s development PostgreSQL adapter initializes/pushes the schema when the local CMS is first opened or when a local API script starts. `npm run payload -- migrate:status` reports this explicitly and should not be used to reset the database.
+The repository contains checked-in Payload migrations under `src/migrations`. Local development may continue using the existing schema and database; do not reset the local database to replay migrations. Use `npm run payload -- migrate:status` for inspection and reserve `npm run payload -- migrate` for an isolated migration verification database or a controlled production release.
 
 Start the normal CMS-backed app with:
 

@@ -32,9 +32,12 @@ npm run lint
 npm run test:int
 npm run test:e2e
 npm run build
+npm run build:standalone
 npm run start
 npm run generate:types
 npm run generate:importmap
+npm run payload -- migrate:status
+npm run payload -- migrate
 npm run import:catalog
 ```
 
@@ -55,6 +58,10 @@ This writes optimized WebP files to `public/images/products/catalog`, a committe
 | `DATABASE_URL` | Yes | PostgreSQL connection string for Payload |
 | `PAYLOAD_SECRET` | Yes | Long random secret for Payload authentication and encryption |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Public site origin used for canonical URLs, Open Graph URLs, robots, sitemap, CORS, and CSRF origins |
+| `PAYLOAD_MEDIA_DIR` | Production | Persistent directory for Payload uploads; use `./media` locally and a shared path outside release directories in production |
+| `PORT` | Production | Port exposed by the standalone Node server |
+| `HOSTNAME` | Production | Bind hostname for the standalone Node server |
+| `TRUST_PROXY` | Optional | Set to `true` only when the reverse proxy is trusted to provide `X-Forwarded-For` for inquiry rate limiting |
 
 `.env` and local database credentials are ignored by Git. Never commit them.
 
@@ -77,7 +84,7 @@ src/
 Payload includes these collections:
 
 - `users`: authenticated CMS administrators
-- `media`: development-local image uploads under `media/`; the collection is ready to move to an object-storage adapter later
+- `media`: image uploads under the `PAYLOAD_MEDIA_DIR` directory; local development defaults to `media/`, while production must use persistent storage outside the release directory
 - `products`: catalog records with no price field, category/brand relationships, specifications, compatibility, images, availability, and SEO fields
 - `inquiries`: public contact-form submissions with name, phone, subject, message, source, optional related product, and workflow status
 - `product-categories`: the four approved category records can be created by an administrator without seeded fake content
@@ -94,7 +101,7 @@ Public routes are available at `/`, `/about`, `/products`, `/products/[slug]`, a
 The foundation also includes:
 
 - Arabic `lang="ar"` and RTL `dir="rtl"` on the public root layout
-- optimized Arabic typography through `next/font/google` using Noto Sans Arabic
+- optimized Arabic typography through `next/font/google` using Tajawal
 - reusable metadata helpers with canonical and Open Graph support
 - `robots.txt` and `sitemap.xml` metadata routes for the known public pages
 - product and category metadata helper functions ready for dynamic routes in a later pass
@@ -106,9 +113,11 @@ The foundation also includes:
 - CORS and CSRF origins are limited to `NEXT_PUBLIC_SITE_URL` when it is set.
 - Server-only values stay in server configuration and are not prefixed with `NEXT_PUBLIC_`.
 - Basic secure response headers are configured in `next.config.ts`.
-- Next.js standalone output is enabled for a lightweight single-process Node deployment behind OpenLiteSpeed.
+- Next.js standalone output is enabled for a lightweight single-process Node deployment behind OpenLiteSpeed. Run `npm run build:standalone` to package `public/` and `.next/static/`, then start it with `npm run start` and the production environment variables documented in `docs/production-readiness.md`.
+- Production Payload schema changes are migration-driven. Run `npm run payload -- migrate:status` and `npm run payload -- migrate` during a controlled release after taking a database backup.
+- Production uploads must live in a persistent shared media directory and be included in the backup plan.
 - No production database, VPS, DNS, SSL, reverse proxy, port, or other application was changed in this pass.
-- Local media is development-only; use an approved external/object-storage adapter before a large production media library is introduced.
+- The local `./media` default is for development; production must set `PAYLOAD_MEDIA_DIR` to persistent storage outside the release directory. An approved object-storage adapter can be introduced later if required.
 - The application is designed as one lightweight Next.js/Payload runtime without Redis, worker processes, or microservices.
 
 ## Content and fallback boundary
