@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
 import { PRIMARY_WHATSAPP_PHONE } from '../lib/whatsapp'
+import { CONFIRMED_COMPANY_ADDRESS } from '../lib/site-info'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
@@ -12,6 +13,12 @@ export const SiteSettings: GlobalConfig = {
   fields: [
     { name: 'companyName', type: 'text', required: true, defaultValue: 'الفردوس' },
     { name: 'logo', type: 'upload', relationTo: 'media' },
+    {
+      name: 'address',
+      type: 'textarea',
+      defaultValue: CONFIRMED_COMPANY_ADDRESS,
+      admin: { description: 'Public business address shown on contact surfaces.' },
+    },
     {
       name: 'contacts',
       type: 'array',

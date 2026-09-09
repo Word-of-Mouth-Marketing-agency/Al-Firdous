@@ -15,11 +15,14 @@ const arabicFont = Tajawal({
   display: 'swap',
 })
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'الفردوس',
-  description: 'شركة الفردوس متخصصة في توفير قطع غيار المضخات وخلاطات ومحطات الخرسانة.',
-  path: '/',
-})
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: 'الفردوس',
+    description: 'شركة الفردوس متخصصة في توفير قطع غيار المضخات وخلاطات ومحطات الخرسانة.',
+    path: '/',
+  }),
+  manifest: '/manifest.webmanifest',
+}
 
 export default async function FrontendLayout(props: { children: React.ReactNode }) {
   const siteSettings = await getSiteSettings()

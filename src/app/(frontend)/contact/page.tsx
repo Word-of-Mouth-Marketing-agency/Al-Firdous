@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { FacebookLogo, InstagramLogo, Phone, TiktokLogo, WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
+import { FacebookLogo, InstagramLogo, MapPin, Phone, TiktokLogo, WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
 
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { InquiryForm } from '@/components/contact/InquiryForm'
@@ -36,6 +36,15 @@ export default async function ContactPage() {
               <p className="page-kicker">قنوات مباشرة</p>
               <h2>هل تبحث عن قطعة غيار معينة؟</h2>
               <p>تواصل معنا الآن وسنساعدك في الوصول إلى القطعة المناسبة.</p>
+              {siteSettings.address ? (
+                <div className="contact-page-address">
+                  <MapPin aria-hidden="true" weight="bold" />
+                  <div>
+                    <strong>العنوان</strong>
+                    <p>{siteSettings.address}</p>
+                  </div>
+                </div>
+              ) : null}
               <div className="contact-page-actions">
                 {siteSettings.whatsappUrl ? <a href={siteSettings.whatsappUrl} className="button button--whatsapp"><WhatsappLogo aria-hidden="true" weight="fill" /> تواصل عبر واتساب</a> : null}
                 {siteSettings.primaryPhone ? <a href={`tel:${siteSettings.primaryPhone}`} className="button button--secondary"><Phone aria-hidden="true" weight="bold" /> اتصل بنا</a> : null}

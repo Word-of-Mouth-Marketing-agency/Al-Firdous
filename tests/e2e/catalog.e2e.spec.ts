@@ -17,13 +17,13 @@ test.describe('catalog and public information pages', () => {
     await expect(page.getByText('لا توجد صورة')).toHaveCount(0)
   })
 
-  test('shows confirmed contact records without inventing an address or email', async ({ page }) => {
+  test('shows confirmed contact records and the confirmed address without inventing an email', async ({ page }) => {
     await page.goto('/contact')
     await expect(page.getByRole('heading', { name: 'تواصل معنا', level: 1 })).toBeVisible()
     await expect(page.getByText('عبدالرحمن')).toBeVisible()
-    await expect(page.getByRole('link', { name: '01031080031' })).toBeVisible()
+    await expect(page.getByRole('link', { name: '01031080031', exact: true })).toBeVisible()
     await expect(page.getByText('البريد الإلكتروني')).toHaveCount(0)
-    await expect(page.getByText('العنوان')).toHaveCount(0)
+    await expect(page.getByText('حدائق اكتوبر شارع زويل بجوار مدخل الفردوس', { exact: true })).toBeVisible()
   })
 
   test('shows the production inquiry form with browser validation', async ({ page }) => {

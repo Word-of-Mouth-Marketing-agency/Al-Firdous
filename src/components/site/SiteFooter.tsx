@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FacebookLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr'
+import { FacebookLogo, InstagramLogo, MapPin, TiktokLogo, WhatsappLogo } from '@phosphor-icons/react/dist/ssr'
 
 import { BrandLogo } from '@/components/site/BrandLogo'
 import { mainNavigation } from '@/lib/site-navigation'
@@ -21,6 +21,26 @@ export function SiteFooter({ settings }: SiteFooterProps) {
       <div className="site-container site-footer__grid">
         <div className="site-footer__brand">
           <BrandLogo inverted />
+          <div className="site-footer__contact" aria-label="بيانات التواصل">
+            {settings.address ? (
+              <p>
+                <MapPin aria-hidden="true" weight="bold" />
+                <span>
+                  <strong>العنوان</strong>
+                  {settings.address}
+                </span>
+              </p>
+            ) : null}
+            {settings.primaryPhone && settings.whatsappUrl ? (
+              <a href={settings.whatsappUrl} className="site-footer__whatsapp" aria-label="التواصل عبر واتساب">
+                <WhatsappLogo aria-hidden="true" weight="fill" />
+                <span>
+                  <strong>واتساب</strong>
+                  <bdi>{settings.primaryPhone}</bdi>
+                </span>
+              </a>
+            ) : null}
+          </div>
         </div>
 
         <div className="site-footer__links">

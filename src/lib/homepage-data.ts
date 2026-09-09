@@ -4,6 +4,7 @@ import config from '@payload-config'
 import { withTimeout } from '@/lib/async-utils'
 import type { Brand, Media, Product, ProductCategory, SiteSetting } from '@/payload-types'
 import { PRIMARY_WHATSAPP_PHONE, toWhatsAppUrl } from '@/lib/whatsapp'
+import { CONFIRMED_COMPANY_ADDRESS } from '@/lib/site-info'
 import { createServerDataError } from '@/lib/server-errors'
 import { isPreviewMode } from '@/lib/preview-mode'
 import {
@@ -40,6 +41,7 @@ export type HomepageContact = {
 export type HomepageSiteSettings = {
   companyName: string
   logo: Media | null
+  address: string | null
   primaryPhone: string | null
   whatsappUrl: string | null
   contacts: HomepageContact[]
@@ -86,6 +88,7 @@ const confirmedContacts: HomepageContact[] = [
 const fallbackSiteSettings: HomepageSiteSettings = {
   companyName: 'الفردوس',
   logo: null,
+  address: CONFIRMED_COMPANY_ADDRESS,
   primaryPhone: PRIMARY_WHATSAPP_PHONE,
   whatsappUrl: toWhatsAppUrl(PRIMARY_WHATSAPP_PHONE),
   contacts: confirmedContacts,
@@ -170,6 +173,7 @@ function mapSiteSettings(settings: SiteSetting | null): HomepageSiteSettings {
   return {
     companyName: settings.companyName || fallbackSiteSettings.companyName,
     logo: isMedia(settings.logo) ? settings.logo : null,
+    address: settings.address || fallbackSiteSettings.address,
     primaryPhone,
     whatsappUrl: toWhatsAppUrl(primaryPhone),
     contacts: settings.contacts?.map((contact) => ({

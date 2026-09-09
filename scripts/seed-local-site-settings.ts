@@ -5,6 +5,7 @@ import { getPayload } from 'payload'
 
 import config from '../src/payload.config'
 import type { SiteSetting } from '../src/payload-types'
+import { CONFIRMED_COMPANY_ADDRESS } from '../src/lib/site-info'
 
 const logoPath = path.resolve(process.env.LOCAL_SITE_LOGO_PATH || 'A:/Downloads/logo.png')
 
@@ -42,6 +43,7 @@ try {
 
 const data: Partial<SiteSetting> = {
   companyName: 'الفردوس',
+  address: CONFIRMED_COMPANY_ADDRESS,
   contacts: [
     { name: 'عبدالرحمن', role: 'مبيعات', phone: '01031080031' },
     { name: 'منار', role: 'خدمة عملاء', phone: '01102100224' },
@@ -73,6 +75,7 @@ console.log(
   JSON.stringify({
     global: 'site-settings',
     companyName: settings.companyName,
+    address: settings.address,
     contacts: settings.contacts?.length ?? 0,
     primaryWhatsApp: settings.primaryWhatsApp,
     logoConfigured: Boolean(settings.logo),

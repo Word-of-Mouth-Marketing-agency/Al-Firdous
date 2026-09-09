@@ -531,6 +531,10 @@ export interface SiteSetting {
   id: number;
   companyName: string;
   logo?: (number | null) | Media;
+  /**
+   * Public business address shown on contact surfaces.
+   */
+  address?: string | null;
   contacts?:
     | {
         name: string;
@@ -563,6 +567,7 @@ export interface SiteSetting {
 export interface SiteSettingsSelect<T extends boolean = true> {
   companyName?: T;
   logo?: T;
+  address?: T;
   contacts?:
     | T
     | {

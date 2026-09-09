@@ -11,6 +11,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:favicon": "node scripts/generate-favicon.mjs",
     "prepare:catalog": "node scripts/prepare-product-catalog.mjs",
     "import:catalog": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/import-product-catalog.ts",
     "seed:local-cms": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-local-site-settings.ts",
