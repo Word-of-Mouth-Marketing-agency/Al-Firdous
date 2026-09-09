@@ -842,7 +842,7 @@
   }
 
   .site-footer {
-    padding-bottom: 3.25rem;
+    padding-bottom: 1.5rem;
     background: #0d3c66;
     color: #fff;
   }
@@ -967,15 +967,8 @@
   }
 
   .site-footer__social-nav {
-    display: grid;
+    display: flex;
     align-items: center;
-    gap: 0.55rem;
-  }
-
-  .site-footer__social-label {
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 800;
   }
 
   .site-footer__social-list {
@@ -1316,7 +1309,7 @@
 
   .site-footer__social-nav {
     order: 1;
-    justify-items: center;
+    justify-content: center;
   }
 
   .site-footer__copyright {

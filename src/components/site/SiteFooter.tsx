@@ -65,7 +65,6 @@ export function SiteFooter({ settings }: SiteFooterProps) {
       <div className="site-container site-footer__bottom">
         <p className="site-footer__copyright">جميع الحقوق محفوظة © الفردوس</p>
         <nav className="site-footer__social-nav" aria-label="التواصل الاجتماعي">
-          <span className="site-footer__social-label">تابعونا على</span>
           <div className="site-footer__social-list">
             {socialLinks.map((social) => {
               const Icon = social.icon
