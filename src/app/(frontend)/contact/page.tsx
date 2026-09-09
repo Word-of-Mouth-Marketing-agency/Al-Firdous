@@ -29,7 +29,7 @@ export default async function ContactPage() {
     <>
       <SiteHeader settings={siteSettings} activePath="/contact" />
       <main className="public-page">
-        <PageTitle title="تواصل معنا" />
+        <PageTitle title="تواصل معنا" className="page-title--compact" />
         <section className="public-section contact-page-section">
           <div className="site-container contact-page-grid">
             <div className="contact-page-lead">
@@ -49,22 +49,27 @@ export default async function ContactPage() {
                 {siteSettings.whatsappUrl ? <a href={siteSettings.whatsappUrl} className="button button--whatsapp"><WhatsappLogo aria-hidden="true" weight="fill" /> تواصل عبر واتساب</a> : null}
                 {siteSettings.primaryPhone ? <a href={`tel:${siteSettings.primaryPhone}`} className="button button--secondary"><Phone aria-hidden="true" weight="bold" /> اتصل بنا</a> : null}
               </div>
-              <div className="contact-page-socials">{socialLinks.map(({ label, href, icon: Icon }) => <a key={label} href={href || undefined} target="_blank" rel="noreferrer"><Icon aria-hidden="true" weight="fill" /> {label}</a>)}</div>
+              <nav className="contact-page-socials" aria-label="التواصل الاجتماعي">
+                {socialLinks.map(({ label, href, icon: Icon }) => <a key={label} href={href || undefined} target="_blank" rel="noreferrer"><Icon aria-hidden="true" weight="fill" /> {label}</a>)}
+              </nav>
             </div>
             <div className="contact-page-side">
               <InquiryForm />
-              <div className="contact-people-card">
+            </div>
+            <div className="contact-people-card">
+              <div className="contact-people-card__heading">
+                <p className="page-kicker">مساعدة مباشرة</p>
                 <h2>فريق التواصل</h2>
-                <div className="contact-people-list">
-                  {siteSettings.contacts.map((contact) => (
-                    <div key={contact.phone} className="contact-person">
-                      <div><strong>{contact.name}</strong><span>{contact.role}</span></div>
-                      <a href={`tel:${contact.phone}`}>{contact.phone}</a>
-                      {toWhatsAppUrl(contact.phone) ? <a href={toWhatsAppUrl(contact.phone) || undefined} aria-label={`واتساب ${contact.name}`}><WhatsappLogo aria-hidden="true" weight="fill" /></a> : null}
-                    </div>
-                  ))}
-                </div>
               </div>
+              <ul className="contact-people-list">
+                {siteSettings.contacts.map((contact, index) => (
+                  <li key={contact.phone} className={`contact-person${index === 0 ? ' contact-person--primary' : ''}`}>
+                    <div className="contact-person__identity"><strong>{contact.name}</strong><span>{contact.role}</span></div>
+                    <a className="contact-person__phone" href={`tel:${contact.phone}`}><bdi>{contact.phone}</bdi></a>
+                    {toWhatsAppUrl(contact.phone) ? <a className="contact-person__whatsapp" href={toWhatsAppUrl(contact.phone) || undefined} aria-label={`واتساب ${contact.name}`}><WhatsappLogo aria-hidden="true" weight="fill" /></a> : null}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
