@@ -9,6 +9,12 @@ type CategorySectionProps = {
   categories: HomepageCategory[]
 }
 
+const brandAssets = {
+  zoomlion: { src: '/images/brands/zoomlion.svg', width: 92, height: 24 },
+  schwing: { src: '/images/brands/schwing.svg', width: 88, height: 24 },
+  putzmeister: { src: '/images/brands/putzmeister-optimized.png', width: 56, height: 28 },
+} as const
+
 export function CategorySection({ categories }: CategorySectionProps) {
   const icons = {
     'concrete-pump-parts': Pipe,
@@ -45,32 +51,38 @@ export function CategorySection({ categories }: CategorySectionProps) {
                   </span>
                   <h3>{category.title}</h3>
                   {category.description ? <p>{category.description}</p> : null}
-                  {category.brandNames.length ? (
+                  {category.brands.length ? (
                     <div
                       className="category-card__brands"
                       aria-label="علامات منتجات مضخات الخرسانة"
                     >
-                      <Image
-                        src="/images/brands/zoomlion.svg"
-                        alt="Zoomlion"
-                        width={92}
-                        height={24}
-                        style={{ width: '92px', height: '24px', objectFit: 'contain' }}
-                      />
-                      <Image
-                        src="/images/brands/schwing.svg"
-                        alt="Schwing"
-                        width={88}
-                        height={24}
-                        style={{ width: '88px', height: '24px', objectFit: 'contain' }}
-                      />
-                      <Image
-                        src="/images/brands/putzmeister-optimized.png"
-                        alt="Putzmeister"
-                        width={56}
-                        height={28}
-                        style={{ width: '56px', height: '28px', objectFit: 'contain' }}
-                      />
+                      {category.brands.map((brand) => {
+                        const asset = brandAssets[brand.slug as keyof typeof brandAssets]
+                        if (!asset) return null
+
+                        const brandQuery = new URLSearchParams({
+                          category: category.slug,
+                          brand: brand.slug,
+                        }).toString()
+
+                        return (
+                          <Link
+                            key={brand.slug}
+                            href={`/products?${brandQuery}`}
+                            className="category-card__brand-link"
+                            aria-label={`عرض منتجات ${brand.name} لمضخات الخرسانة`}
+                          >
+                            <Image
+                              src={asset.src}
+                              alt=""
+                              width={asset.width}
+                              height={asset.height}
+                              className="category-card__brand-logo"
+                            />
+                            <ArrowLeft aria-hidden="true" weight="bold" />
+                          </Link>
+                        )
+                      })}
                     </div>
                   ) : null}
                   <Link href={`/products?category=${category.slug}`} className="text-link">

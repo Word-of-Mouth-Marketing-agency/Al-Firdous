@@ -9,9 +9,14 @@ import { createServerDataError } from '@/lib/server-errors'
 import { isPreviewMode } from '@/lib/preview-mode'
 import {
   confirmedCategoryDefaults,
-  confirmedPumpBrands,
+  fallbackCatalogBrands,
   fallbackCatalogProducts,
 } from '@/lib/product-catalog'
+
+export type HomepageBrand = {
+  name: string
+  slug: string
+}
 
 export type HomepageCategory = {
   id: number | string
@@ -20,7 +25,7 @@ export type HomepageCategory = {
   description: string | null
   image: Media | null
   fallbackImageSrc: string
-  brandNames: string[]
+  brands: HomepageBrand[]
 }
 
 export type HomepageProduct = {
@@ -85,6 +90,11 @@ const confirmedContacts: HomepageContact[] = [
   { name: 'حماده', role: 'مبيعات', phone: '01098630366' },
 ]
 
+const fallbackPumpBrands: HomepageBrand[] = fallbackCatalogBrands.map((brand) => ({
+  name: brand.name,
+  slug: brand.slug,
+}))
+
 const fallbackSiteSettings: HomepageSiteSettings = {
   companyName: 'الفردوس',
   logo: null,
@@ -103,7 +113,7 @@ function isMedia(value: number | Media | null | undefined): value is Media {
   return typeof value === 'object' && value !== null && 'id' in value
 }
 
-function mapCategory(category: ProductCategory, brandNames: string[]): HomepageCategory {
+function mapCategory(category: ProductCategory, brands: HomepageBrand[]): HomepageCategory {
   const preview = categoryPreviewContent[category.slug as keyof typeof categoryPreviewContent]
 
   return {
@@ -113,7 +123,7 @@ function mapCategory(category: ProductCategory, brandNames: string[]): HomepageC
     description: category.description ?? preview?.description ?? null,
     image: isMedia(category.image) ? category.image : null,
     fallbackImageSrc: preview?.image ?? '/images/home/about-parts.webp',
-    brandNames,
+    brands,
   }
 }
 
@@ -125,13 +135,13 @@ function buildFallbackCategories(): HomepageCategory[] {
     description: categoryPreviewContent[category.slug].description,
     image: null,
     fallbackImageSrc: categoryPreviewContent[category.slug].image,
-    brandNames: index === 0 ? [...confirmedPumpBrands] : [],
+    brands: index === 0 ? fallbackPumpBrands : [],
   }))
 }
 
 function mergeConfirmedCategories(
   categories: ProductCategory[],
-  brandNames: string[],
+  brands: HomepageBrand[],
 ): HomepageCategory[] {
   const categoryMap = new Map(categories.map((category) => [category.slug, category]))
 
@@ -146,11 +156,11 @@ function mergeConfirmedCategories(
         description: categoryPreviewContent[defaultCategory.slug].description,
         image: null,
         fallbackImageSrc: categoryPreviewContent[defaultCategory.slug].image,
-        brandNames: index === 0 ? brandNames : [],
+        brands: index === 0 ? brands : [],
       }
     }
 
-    return mapCategory(category, index === 0 ? brandNames : [])
+    return mapCategory(category, index === 0 ? brands : [])
   })
 }
 
@@ -262,16 +272,17 @@ export async function getHomepageData(): Promise<HomepageData> {
 
     const [categoryResult, brandResult, productResult, siteSettings] = result
 
-    const availableBrandNames = new Set(
-      (brandResult.docs as Brand[]).map((brand) => brand.name).filter(Boolean),
-    )
-    const brandNames = confirmedPumpBrands.filter((brand) => availableBrandNames.has(brand))
+    const cmsBrands = (brandResult.docs as Brand[]).filter((brand) => Boolean(brand.name && brand.slug))
+    const pumpBrands = fallbackPumpBrands.map((fallbackBrand) => {
+      const cmsBrand = cmsBrands.find((brand) => brand.name === fallbackBrand.name)
+      return cmsBrand ? { name: cmsBrand.name, slug: cmsBrand.slug } : fallbackBrand
+    })
     const cmsProducts = productResult.docs as Product[]
 
     return {
       categories: mergeConfirmedCategories(
         categoryResult.docs as ProductCategory[],
-        brandNames.length ? brandNames : [...confirmedPumpBrands],
+        pumpBrands,
       ),
       featuredProducts: cmsProducts.length
         ? cmsProducts.map(mapProduct)

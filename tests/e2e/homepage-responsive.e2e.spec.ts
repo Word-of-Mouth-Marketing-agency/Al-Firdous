@@ -51,4 +51,42 @@ test.describe('homepage responsive behavior', () => {
       }
     }
   })
+
+  test('offers clickable pump brand filters without changing the category CTA', async ({ page }) => {
+    await page.goto('/')
+
+    const pumpCard = page.locator('.category-card').filter({ has: page.getByRole('heading', { name: 'قطع غيار مضخات الخرسانة', level: 3 }) })
+    const brandLinks = [
+      { name: 'Zoomlion', slug: 'zoomlion' },
+      { name: 'Schwing', slug: 'schwing' },
+      { name: 'Putzmeister', slug: 'putzmeister' },
+    ]
+
+    for (const brand of brandLinks) {
+      const link = pumpCard.getByRole('link', { name: `عرض منتجات ${brand.name} لمضخات الخرسانة` })
+      await expect(link).toHaveAttribute('href', `/products?category=concrete-pump-parts&brand=${brand.slug}`)
+      await expect(link).not.toHaveAttribute('href', '#')
+      await link.focus()
+      await expect(link).toBeFocused()
+    }
+
+    for (const brand of brandLinks) {
+      await page.goto('/')
+      await pumpCard.getByRole('link', { name: `عرض منتجات ${brand.name} لمضخات الخرسانة` }).click()
+      await expect(page).toHaveURL(new RegExp(`\\/products\\?category=concrete-pump-parts&brand=${brand.slug}$`))
+      await expect(page.locator('#catalog-category')).toHaveValue('concrete-pump-parts')
+      await expect(page.locator('#catalog-brand')).toHaveValue(brand.slug)
+
+      if (brand.slug === 'schwing') {
+        await expect(page.getByText('57 قطعة متاحة للاستفسار')).toBeVisible()
+      } else {
+        await expect(page.getByRole('heading', { name: 'لم نعثر على منتجات مطابقة', level: 2 })).toBeVisible()
+      }
+    }
+
+    await page.goto('/')
+    await pumpCard.getByRole('link', { name: 'عرض المنتجات', exact: true }).click()
+    await expect(page).toHaveURL(/\/products\?category=concrete-pump-parts$/)
+    await expect(page.locator('#catalog-category')).toHaveValue('concrete-pump-parts')
+  })
 })
