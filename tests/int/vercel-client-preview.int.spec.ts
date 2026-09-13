@@ -39,7 +39,7 @@ describe('Vercel client preview mode', () => {
 
     expect(data.contentSource).toBe('fallback')
     expect(data.categories).toHaveLength(4)
-    expect(data.featuredProducts).toHaveLength(7)
+    expect(data.featuredProducts).toHaveLength(6)
     expect(data.siteSettings.primaryPhone).toBe('01031080031')
   })
 })

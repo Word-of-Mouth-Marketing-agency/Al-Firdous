@@ -216,7 +216,7 @@ export async function getSiteSettings(): Promise<HomepageSiteSettings> {
 function buildFallbackHomepageData(): HomepageData {
   return {
     categories: buildFallbackCategories(),
-    featuredProducts: fallbackCatalogProducts.filter((product) => product.featured).map((product) => ({
+    featuredProducts: fallbackCatalogProducts.filter((product) => product.featured).slice(0, 6).map((product) => ({
       id: product.id,
       name: product.name,
       slug: product.slug,
@@ -257,7 +257,7 @@ export async function getHomepageData(): Promise<HomepageData> {
         payload.find({
           collection: 'products',
           depth: 1,
-          limit: 7,
+          limit: 6,
           sort: '-updatedAt',
           where: {
             and: [{ active: { equals: true } }, { featured: { equals: true } }],
