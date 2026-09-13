@@ -8,7 +8,7 @@ This record covers production assets used by the Al Firdous homepage. Brand mark
 | ------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------- |
 | `public/images/brand/al-firdous-logo.webp`       | Header                                   | Client-supplied `logo.png`                             | Official Al Firdous logo, losslessly resized for the web.                              |
 | `public/images/brand/al-firdous-logo-white.webp` | Footer                                   | Client-supplied `footer-logo.png`                      | Official white Al Firdous logo, losslessly resized for the web.                        |
-| `public/images/products/catalog/*.webp`         | Catalog and featured products            | Client-supplied product photography in `firdous-media` | 50 unique visual assets resized and compressed locally; exact duplicate source aliases are documented in `docs/product-media-inventory.md`. |
+| `public/images/products/catalog/*.webp`         | Catalog and featured products            | Client-supplied product photography in `firdous-media` plus the supplied `جنب قلاب داخلي مقفول.webp` product image | 51 unique visual assets resized and compressed locally; exact duplicate source aliases are documented in `docs/product-media-inventory.md`. |
 | `public/images/home/about-parts.webp`            | About preview and general-parts category | Composite of client-supplied product photography       | Four supplied product photos arranged on a neutral background.                         |
 
 ## Generated visual
@@ -23,9 +23,9 @@ This record covers production assets used by the Al Firdous homepage. Brand mark
 
 | Local file                              | Homepage use        | Original source                                                                                                  | Provider / license                          |
 | --------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `public/images/home/category-pump.webp` | Pump-parts category | [Zoomlion 101 Pump Truck 20210522](https://commons.wikimedia.org/wiki/File:Zoomlion_101_Pump_Truck_20210522.jpg) | Wikimedia Commons; Huangdan2060; CC BY 3.0. |
+| `public/images/home/category-pump.webp` | Pump-parts category | Client-supplied `مضخات.webp` | Supplied project media; copied and retained as a local WebP asset. |
 
-The downloaded photograph was cropped, resized, and compressed to WebP for its listed homepage placement.
+The supplied photograph was copied to the listed local WebP asset for its homepage placement.
 
 ## Supported-brand marks
 

@@ -72,7 +72,7 @@ Import the exact taxonomy, media, and product records with:
 npm run import:catalog
 ```
 
-The import is idempotent by category/brand slug, product slug, and media filename. Re-running it updates the existing 57 products rather than creating duplicates. Every imported product is assigned to `concrete-pump-parts` and the `Schwing` brand, with `active: true`, `availability: on-request`, a real local media record, and the six deterministic featured records from the prepared manifest.
+The import is idempotent by category/brand slug, product slug, and media filename. Re-running it updates the existing 57 products rather than creating duplicates. Every imported product is assigned to `concrete-pump-parts` and the `Schwing` brand, with `active: true`, `availability: on-request`, a real local media record, and the seven deterministic featured records from the prepared manifest.
 
 Seed the confirmed SiteSettings values and the provided logo with:
 
@@ -95,7 +95,7 @@ Verify the actual Payload database directly (not fallback JSON) with:
 npm run verify:local-cms
 ```
 
-The verification checks 57 unique products, four categories, three brands, product images, pump-part/Schwing assignments, six featured products, five contacts, the primary WhatsApp value, logo/social settings, and that no inquiries were seeded.
+The verification checks 57 unique products, four categories, three brands, product images, pump-part/Schwing assignments, seven featured products, five contacts, the primary WhatsApp value, logo/social settings, and that no inquiries were seeded.
 
 ## Preview versus normal mode
 

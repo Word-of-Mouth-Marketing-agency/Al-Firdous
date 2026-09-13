@@ -2,7 +2,7 @@
   "sourceDir": "A:/Downloads/firdous-media",
   "totalSourceFiles": 57,
   "catalogRecords": 57,
-  "uniqueVisualAssets": 50,
+  "uniqueVisualAssets": 51,
   "duplicateSourceGroups": [
     [
       "جشمة بستم ضح 125 شيفينج.png",
@@ -376,15 +376,15 @@
       "name": "جنب قلاب داخلي مقفول شيفينج",
       "categorySlug": "concrete-pump-parts",
       "brandSlug": "schwing",
-      "featured": false,
+      "featured": true,
       "image": "/images/products/catalog/schwing-pump-part-22-158d131d.webp",
-      "sourceFile": "جنب قلاب داخلي مقفول شيفينج_.png",
+      "sourceFile": "جنب قلاب داخلي مقفول.webp",
       "sourceAliases": [
-        "جنب قلاب داخلي مقفول شيفينج_.png"
+        "جنب قلاب داخلي مقفول.webp"
       ],
-      "sourceHash": "158d131d70e514aee67076cab45650152058d20d9fb50c2a639c5d0588525411",
-      "sourceWidth": 1086,
-      "sourceHeight": 1448
+      "sourceHash": "deb71afca1b604577dd5b4c10302328fab5eaf4f357c9da666402dd9818241a7",
+      "sourceWidth": 1122,
+      "sourceHeight": 1402
     },
     {
       "id": "catalog-23",

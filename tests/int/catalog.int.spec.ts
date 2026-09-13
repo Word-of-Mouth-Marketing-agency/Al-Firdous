@@ -7,7 +7,7 @@ describe('catalog fallback data', () => {
   it('keeps every supplied product file as a distinct committed catalog record', () => {
     expect(fallbackCatalogManifest.totalSourceFiles).toBe(57)
     expect(fallbackCatalogManifest.catalogRecords).toBe(57)
-    expect(fallbackCatalogManifest.uniqueVisualAssets).toBe(50)
+    expect(fallbackCatalogManifest.uniqueVisualAssets).toBe(51)
     expect(fallbackCatalogManifest.products).toHaveLength(57)
     expect(new Set(fallbackCatalogManifest.products.map((product) => product.image)).size).toBe(57)
     expect(new Set(fallbackCatalogManifest.products.map((product) => product.slug)).size).toBe(57)

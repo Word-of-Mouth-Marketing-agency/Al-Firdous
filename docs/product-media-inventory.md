@@ -3,7 +3,7 @@
 - Source folder: `A:/Downloads/firdous-media`
 - Source files processed: 57
 - Catalog records published: 57
-- Unique visual hashes (diagnostic only): 50
+- Unique visual hashes (diagnostic only): 51
 - Category mapping: all supplied media is mapped to `concrete-pump-parts` because the supplied inventory is concrete-pump spare-part media.
 - Brand mapping: all supplied records are mapped to the confirmed supported-brand record `Schwing`, per the production catalog brief.
 - Every source file is a distinct product record, including files with identical hashes. No source files are merged.
@@ -11,7 +11,6 @@
 ## Exact duplicate source groups (retained as separate records)
 
 - `جشمة بستم ضح 125 شيفينج.png` = `جشمة بستم ضخ 120 شيفينج.png`
-- `جنب قلاب داخلي مفتوح شيفينج_.png` = `جنب قلاب داخلي مقفول شيفينج_.png`
 - `حلقة 230 شيفينج جودة عالية_.png` = `حلقة 250 شيفينج جودة عالية.png`
 - `حلقة 230 شيفينج.png` = `حلقة 250 شيفينج_.png`
 - `كافر مرايا شيفينج 230.png` = `كافر مرايا شيفينج 250.png`
@@ -43,7 +42,7 @@
 | 19 | جلبة حشو قلاب صغيرة شيفينج | `schwing-pump-part-19-8fc43a44` | `جلبة حشو قلاب صغيرة شيفينج.png` | `/images/products/catalog/schwing-pump-part-19-8fc43a44.webp` |
 | 20 | جنب قلاب حديث شيفينج | `schwing-pump-part-20-9f42d2db` | `جنب قلاب حديث شيفينج.jpg` | `/images/products/catalog/schwing-pump-part-20-9f42d2db.webp` |
 | 21 | جنب قلاب داخلي مفتوح شيفينج | `schwing-pump-part-21-158d131d` | `جنب قلاب داخلي مفتوح شيفينج_.png` | `/images/products/catalog/schwing-pump-part-21-158d131d.webp` |
-| 22 | جنب قلاب داخلي مقفول شيفينج | `schwing-pump-part-22-158d131d` | `جنب قلاب داخلي مقفول شيفينج_.png` | `/images/products/catalog/schwing-pump-part-22-158d131d.webp` |
+| 22 | جنب قلاب داخلي مقفول شيفينج | `schwing-pump-part-22-158d131d` | `جنب قلاب داخلي مقفول.webp` | `/images/products/catalog/schwing-pump-part-22-158d131d.webp` |
 | 23 | جنب قلاب مفتوح شيفينج | `schwing-pump-part-23-b90a1cc4` | `جنب قلاب مفتوح شيفينج.jpg` | `/images/products/catalog/schwing-pump-part-23-b90a1cc4.webp` |
 | 24 | جنب قلاب مقفول شيفينج | `schwing-pump-part-24-89621704` | `جنب قلاب مقفول شيفينج.jpg` | `/images/products/catalog/schwing-pump-part-24-89621704.webp` |
 | 25 | حلقة 210 شيفينج | `schwing-pump-part-25-b5637e71` | `حلقة 210 شيفينج.png` | `/images/products/catalog/schwing-pump-part-25-b5637e71.webp` |
